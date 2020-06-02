@@ -1,10 +1,12 @@
-# where I store dan foreman-mackey's utility functions that i want to steal
+'''
+This is a collection of external utility functions, combined with a couple of simple utilities I wrote.
+So far, utility functions are only from dfm.io/posts/exopop/ (hence the file name.)
+'''
 
 from matplotlib import pyplot as pl
 import numpy as np
 import pandas as pd
 from scipy.stats import gamma
-# dfm.io/posts/exopop/
 
 import os
 import requests
@@ -30,9 +32,11 @@ def get_catalog(name, basepath="data"):
     df.to_hdf(fn, name, format="t")
     return df
 
-def stellar_cuts(stlr):
-    m = (4200 <= stlr.teff) & (stlr.teff <= 6100)
-    m &= stlr.radius <= 1.15
+def stellar_cuts(stlr, cut_to_gk=True):
+    m = stlr.kepid >= 0
+    if cut_to_gk:
+        m = (4200 <= stlr.teff) & (stlr.teff <= 6100)
+        m &= stlr.radius <= 1.15
 
     # Only include stars with sufficient data coverage.
     m &= stlr.dataspan > 365.25*2.
@@ -49,14 +53,14 @@ def stellar_cuts(stlr):
     return stlr
 
 def get_stellar():
-    return stellar_cuts(get_catalog('q1_q16_stellar'))
+    return get_catalog('q1_q16_stellar')
+
+stellar_keys = get_stellar().keys()
 
 def get_kois():
     return get_catalog('q1_q16_koi')
 
-stlr = get_stellar()
-
-def kois_cuts(kois):
+def kois_cuts(kois, period_rng, rp_rng):
     m = kois.koi_pdisposition == "CANDIDATE"
     base_kois = pd.DataFrame(kois[m])
     m &= (period_rng[0] <= kois.koi_period) & (kois.koi_period <= period_rng[1])
@@ -66,7 +70,6 @@ def kois_cuts(kois):
 
     print("Selected {0} KOIs after cuts".format(len(kois)))
     return kois
-
 
 def get_duration(period, aor, e):
     """
@@ -107,7 +110,7 @@ def get_delta(k, c=1.0874, s=1.0187):
     return 0.84 * delta_max
 
 def get_cdpp():
-    cdpp_cols = [k for k in stlr.keys() if k.startswith("rrmscdpp")]
+    cdpp_cols = [k for k in stellar_keys if k.startswith("rrmscdpp")]
     cdpp_vals = np.array([k[-4:].replace("p", ".") for k in cdpp_cols], dtype=float)
     return cdpp_cols, cdpp_vals
 
@@ -137,12 +140,14 @@ def get_mes(star, period, rp, tau, re=0.009171):
 # Pre-compute and freeze the gamma function from Equation (5) in
 # Burke et al.
 
-pgam = gamma(4.65, loc=0., scale=0.98)
-mesthres_cols = [k for k in stlr.keys() if k.startswith("mesthres")]
-mesthres_vals = np.array([k[-4:].replace("p", ".") for k in mesthres_cols],
-                     dtype=float)
+def make_gamma():
+    pgam = gamma(4.65, loc=0., scale=0.98)
+    mesthres_cols = [k for k in stellar_keys if k.startswith("mesthres")]
+    mesthres_vals = np.array([k[-4:].replace("p", ".") for k in mesthres_cols],
+                        dtype=float)
+    return pgam, mesthres_cols, mesthres_vals
 
-def get_pdet(star, aor, period, rp, e):
+def get_pdet(star, aor, period, rp, e, pgam, mesthres_cols, mesthres_vals):
     """
     Equation (5) from Burke et al. Estimate the detection efficiency
     for a transit.
@@ -193,7 +198,7 @@ def get_pgeom(aor, e):
     """
     return 1. / (aor * (1 - e*e)) * (aor > 1.0)
 
-def get_completeness(star, period, rp, e, with_geom=True):
+def get_completeness(star, period, rp, e, pgam, mesthres_cols, mesthres_vals, with_geom=True):
     """
     A helper function to combine all the completeness effects.
 
@@ -204,29 +209,26 @@ def get_completeness(star, period, rp, e, with_geom=True):
     :param stlr:      the stellar catalog
     :param with_geom: include the geometric transit probability?
 
+    pgam, mesthres_cols, mesthres_vals are here to make these functions pure.
     """
     aor = get_a(period, star.mass) / star.radius
-    pdet = get_pdet(star, aor, period, rp, e)
+    pdet = get_pdet(star, aor, period, rp, e, pgam, mesthres_cols, mesthres_vals)
     pwin = get_pwin(star, period)
     if not with_geom:
         return pdet * pwin
     pgeom = get_pgeom(aor, e)
     return pdet * pwin * pgeom
 
-period_rng = (50, 300)
-rp_rng = (0.75, 2.5)
-
-period = np.linspace(period_rng[0], period_rng[1], 57)
-rp = np.linspace(rp_rng[0], rp_rng[1], 61)
-period_grid, rp_grid = np.meshgrid(period, rp, indexing="ij")
-
-def make_comp():
+def make_comp(stlr, period_grid, rp_grid, name=None):
+    pgam, mesthres_cols, mesthres_vals = make_gamma()
     comp = np.zeros_like(period_grid)
     for _, star in stlr.iterrows():
-        comp += get_completeness(star, period_grid, rp_grid, 0.0, with_geom=True)
+        comp += get_completeness(star, period_grid, rp_grid, 0.0, pgam, mesthres_cols, mesthres_vals, with_geom=True)
+    if name:
+        np.save('data/comp_{0}.npy'.format(name), comp)
     return comp
 
-def population_model(theta, period, rp):
+def population_model(theta, period, rp, period_rng, rp_rng):
     lnf0, beta, alpha = theta
     v = np.exp(lnf0) * np.ones_like(period)
     for x, rng, n in zip((period, rp),
@@ -245,10 +247,12 @@ def make_plot(pop_comp, x0, x, y, ax):
     ax.fill_between(x0, b, d, color="k", alpha=0.3, edgecolor="none")
     ax.plot(x0, c, "k", lw=1)
 
-def plot_results(samples, kois, koi_rps, koi_periods, rp_grid, period_grid, comp=None):
+def plot_results(samples, kois, koi_periods, koi_rps, period_grid, rp_grid, comp=None):
     if comp is None:
         print("rerunning completeness")
         comp = make_comp()
+    period_rng = (min(koi_periods), max(koi_periods))
+    rp_rng = (min(koi_rps), max(koi_rps))
     # Loop through the samples and compute the list of population models.
     samples = np.atleast_2d(samples)
     pop = np.empty((len(samples), period_grid.shape[0], period_grid.shape[1]))
