@@ -251,15 +251,15 @@ def plot_results(samples, kois, koi_periods, koi_rps, period_grid, rp_grid, comp
     if comp is None:
         print("rerunning completeness")
         comp = make_comp()
-    period_rng = (min(koi_periods), max(koi_periods))
-    rp_rng = (min(koi_rps), max(koi_rps))
+    period_rng = (np.min(period_grid), np.max(period_grid))
+    rp_rng = (np.min(rp_grid), np.max(rp_grid))
     # Loop through the samples and compute the list of population models.
     samples = np.atleast_2d(samples)
     pop = np.empty((len(samples), period_grid.shape[0], period_grid.shape[1]))
     gamma_earth = np.empty((len(samples)))
     for i, p in enumerate(samples):
-        pop[i] = population_model(p, period_grid, rp_grid)
-        gamma_earth[i] = population_model(p, 365.25, 1.0) * 365.
+        pop[i] = population_model(p, period_grid, rp_grid, period_rng, rp_rng) # dinosaur
+        gamma_earth[i] = population_model(p, 365.25, 1.0, period_rng, rp_rng) * 365.
 
     fig, axes = pl.subplots(2, 2, figsize=(10, 8))
     fig.subplots_adjust(wspace=0.4, hspace=0.4)
@@ -271,6 +271,9 @@ def plot_results(samples, kois, koi_periods, koi_rps, period_grid, rp_grid, comp
 
     # Plot the observed radius distribution.
     ax = axes[0, 0]
+    rp = rp_grid[0]
+    period = period_grid[:,0]
+
     make_plot(pop * comp[None, :, :], rp, x, period, ax)
     ax.errorbar(0.5*(x[:-1]+x[1:]), n, yerr=np.sqrt(n), fmt=".k",
                 capsize=0)
