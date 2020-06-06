@@ -32,16 +32,21 @@ def get_catalog(name, basepath="data"):
     df.to_hdf(fn, name, format="t")
     return df
 
-def stellar_cuts(stlr, cut_to_gk=True):
+def stellar_cuts(stlr, cut_type="dfm"):
     m = stlr.kepid >= 0
-    if cut_to_gk:
+    if cut_type == "dfm":
         m = (4200 <= stlr.teff) & (stlr.teff <= 6100)
         m &= stlr.radius <= 1.15
-
-    # Only include stars with sufficient data coverage.
-    m &= stlr.dataspan > 365.25*2.
-    m &= stlr.dutycycle > 0.6
-    m &= stlr.rrmscdpp07p5 <= 1000.
+        m &= stlr.dataspan > 365.25*2.
+        m &= stlr.dutycycle > 0.6
+        m &= stlr.rrmscdpp07p5 <= 1000.
+    elif cut_type == "hsu":
+        m = (4000 <= stlr.teff) & (stlr.teff <= 7000)
+        m &= stlr.logg >= 4.0
+        m &= stlr.dataspan > 365.25 / 4
+        m &= np.isfinite(stlr.radius)
+        m &= np.isfinite(stlr.rrmscdpp07p5)
+        m &= np.isfinite(stlr.dens)
 
     # Only select stars with mass estimates.
     m &= np.isfinite(stlr.mass)
