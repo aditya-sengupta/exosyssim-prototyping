@@ -5,7 +5,7 @@ from functools import partial
 class ABCSampler:
     def __init__(self, prior, candidate_getter, distance=lambda a, b: abs(a - b), statistic=np.mean):
         '''
-        prior : stats.rv_continuous or stats.rv_discrete object.
+        prior : stats.rv_continuous or stats.rv_discrete object
         Samples from the prior distribution over the parameters.
         Takes in nothing.
         Returns numpy.ndarray of parameters.
@@ -40,10 +40,12 @@ class ABCSampler:
         while True:
             params = prior.rvs()
             candidate = self.candidate_getter(params)
-            synthetic = candidate(data.shape[0])
+            synthetic = candidate(len(data))
             dis = self.distance(self.statistic(synthetic), self.statistic(data))
             if dis <= threshold:
                 return params
+            else:
+                print(dis)
             num_iters += 1
             if num_iters > max_iters:
                 return None
