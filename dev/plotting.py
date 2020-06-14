@@ -4,6 +4,7 @@ Plotting utilities, mostly directly from dfm.io/posts/exopop/.
 
 import numpy as np
 from matplotlib import pyplot as plt
+from .occurrence_models import powerlaw as population_model
 
 def make_plot(pop_comp, x0, x, y, ax):
     pop = 0.5 * (pop_comp[:, 1:] + pop_comp[:, :-1])
@@ -25,10 +26,10 @@ def plot_results(samples, kois, koi_periods, koi_rps, period_grid, rp_grid, comp
     pop = np.empty((len(samples), period_grid.shape[0], period_grid.shape[1]))
     gamma_earth = np.empty((len(samples)))
     for i, p in enumerate(samples):
-        pop[i] = population_model(p, period_grid, rp_grid, period_rng, rp_rng) # dinosaur
+        pop[i] = population_model(p, period_grid, rp_grid, period_rng, rp_rng)
         gamma_earth[i] = population_model(p, 365.25, 1.0, period_rng, rp_rng) * 365.
 
-    fig, axes = pl.subplots(2, 2, figsize=(10, 8))
+    fig, axes = plt.subplots(2, 2, figsize=(10, 8))
     fig.subplots_adjust(wspace=0.4, hspace=0.4)
 
     # Integrate over period.

@@ -3,17 +3,15 @@ Data processing utilities, mostly directly from dfm.io/posts/exopop/.
 '''
 
 from io import BytesIO
+import numpy as np
 import pandas as pd
 import os
 import requests
-import pandas as pd
-import sys
-sys.path.append('..')
 
-def get_catalog(name, basepath="../data"):
+def get_catalog(name, basepath="../data", **kwargs):
     fn = os.path.join(basepath, "{0}.h5".format(name))
     if os.path.exists(fn):
-        return pd.read_hdf(fn, name)
+        return pd.read_hdf(fn, name, **kwargs)
     if not os.path.exists(basepath):
         os.makedirs(basepath)
     print("Downloading {0}...".format(name))
@@ -26,6 +24,9 @@ def get_catalog(name, basepath="../data"):
     df = pd.read_csv(fh)
     df.to_hdf(fn, name, format="t")
     return df
+
+def get_stellar_keys():
+    return get_catalog('q1_q16_stellar', start=0, stop=0).keys()
 
 def stellar_cuts(stlr, cut_type="dfm"):
     m = stlr.kepid >= 0
@@ -70,4 +71,3 @@ def kois_cuts(kois, period_rng, rp_rng):
 
     print("Selected {0} KOIs after cuts".format(len(kois)))
     return kois
-    

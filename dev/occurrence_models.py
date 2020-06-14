@@ -1,9 +1,10 @@
 '''
-This is a collection of external utility functions, combined with a couple of simple utilities I wrote.
-So far, utility functions are only from dfm.io/posts/exopop/ (hence the file name.)
+Occurrence rate population models. Mostly directly from dfm.io/posts/exopop/.
 '''
 
-def population_model(theta, period, rp, period_rng, rp_rng):
+import numpy as np
+
+def powerlaw(theta, period, rp, period_rng, rp_rng):
     lnf0, beta, alpha = theta
     v = np.exp(lnf0) * np.ones_like(period)
     for x, rng, n in zip((period, rp),

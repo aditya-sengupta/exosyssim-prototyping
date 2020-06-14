@@ -5,6 +5,7 @@ Mostly directly from dfm.io/posts/exopop/.
 
 import numpy as np
 from scipy.stats import gamma
+from .dataprocessing import get_stellar_keys
 
 def get_duration(period, aor, e):
     """
@@ -45,7 +46,7 @@ def get_delta(k, c=1.0874, s=1.0187):
     return 0.84 * delta_max
 
 def get_cdpp():
-    cdpp_cols = [k for k in stellar_keys if k.startswith("rrmscdpp")]
+    cdpp_cols = [k for k in get_stellar_keys() if k.startswith("rrmscdpp")]
     cdpp_vals = np.array([k[-4:].replace("p", ".") for k in cdpp_cols], dtype=float)
     return cdpp_cols, cdpp_vals
 
@@ -116,7 +117,7 @@ def get_pwin(star, period):
     f = star.dutycycle
     omf = 1.0 - f
     pw = 1 - omf**M - M*f*omf**(M-1) - 0.5*M*(M-1)*f*f*omf**(M-2)
-    msk = (pw >= 0.0) * (M >= 2.0)
+    msk = (pw >= 0.0) & (M >= 2.0)
     return pw * msk
 
 def get_pgeom(aor, e):
