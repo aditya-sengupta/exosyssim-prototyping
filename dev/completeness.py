@@ -7,6 +7,8 @@ import numpy as np
 from scipy.stats import gamma
 from .dataprocessing import get_stellar_keys
 
+stellar_keys = get_stellar_keys()
+
 def get_duration(period, aor, e):
     """
     Equation (1) from Burke et al. This estimates the transit
@@ -46,7 +48,7 @@ def get_delta(k, c=1.0874, s=1.0187):
     return 0.84 * delta_max
 
 def get_cdpp():
-    cdpp_cols = [k for k in get_stellar_keys() if k.startswith("rrmscdpp")]
+    cdpp_cols = [k for k in stellar_keys if k.startswith("rrmscdpp")]
     cdpp_vals = np.array([k[-4:].replace("p", ".") for k in cdpp_cols], dtype=float)
     return cdpp_cols, cdpp_vals
 
@@ -168,18 +170,26 @@ def pcomp_vectors(stars, periods, rp, eccs):
     '''
     Self-contained, returns pcomp over matched arrays of planets around stars.
     '''
+    cdpp_cols = [k for k in stellar.keys() if k.startswith("rrmscdpp")]
+    cdpp_vals = np.array([k[-4:].replace("p", ".") for k in cdpp_cols], dtype=float)
+    pgam = gamma(4.65, loc=0., scale=0.98)
+    mesthres_cols = [k for k in stellar.keys() if k.startswith("mesthres")]
+    mesthres_vals = np.array([k[-4:].replace("p", ".") for k in mesthres_cols],
+                            dtype=float)
+    mstars = stars['mass'].values
+    rstars = stars['radius'].values
+    cdpp = stars[cdpp_cols].values
+    dataspan = stars['dataspan'].values
+    dutycycle = stars['dutycycle'].values
+    mesthres_cols_stars = stars[mesthres_cols].values
+
+    return pcomp_star_vectors(mstars, rstars, cdpp, dataspan, dutycycle, mesthres_cols_stars, periods, rp, eccs)
+
+def pcomp_star_vectors(mstars, rstars, cdpp, dataspan, dutycycle, mesthres_cols_stars, periods, rp, eccs):
     c = 1.0874
     s = 1.0187
     Go4pi = 2945.4625385377644/(4*np.pi*np.pi)
     re = 0.009171
-    
-    mstars = np.array(stars['mass'])
-    rstars = np.array(stars['radius'])
-    cdpp = np.array(stars[cdpp_cols], dtype=float)
-    dataspan = np.array(stars['dataspan'])
-    dutycycle = np.array(stars['dutycycle'])
-    mesthres_cols_stars = np.array(stars[mesthres_cols], dtype=float)
-    
     aor = (Go4pi*periods*periods*mstars) ** (1./3) / rstars
     tau = 6 * periods * np.sqrt(1 - eccs**2) / aor
 

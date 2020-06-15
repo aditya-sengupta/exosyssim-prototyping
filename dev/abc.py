@@ -45,7 +45,8 @@ class ABCSampler:
             if dis <= threshold:
                 return params
             else:
-                print(dis)
+                pass
+                # print(dis)
             num_iters += 1
             if num_iters > max_iters:
                 return None
@@ -67,7 +68,7 @@ class ABCSampler:
                 sampling_normal = stats.multivariate_normal(center, tau)
                 param_i = sampler(prior=sampling_normal, threshold=thresh)
                 new_params_matrix[i] = param_i
-                new_weights[i] = prior.pdf(param_i) / np.dot(weights, np.prod(stats.norm.pdf(
+                new_weights[i] = self.prior.pdf(param_i) / np.dot(weights, np.prod(stats.norm.pdf(
                     np.linalg.inv(linalg.sqrtm(tau)).dot((param_i - params_matrix).T)), axis=0)) # is the sqrtm needed?
             params_matrix = new_params_matrix
             weights = new_weights / sum(new_weights)
