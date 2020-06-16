@@ -22,7 +22,7 @@ class ABCSampler:
         self.distance = distance
         self.statistic = statistic
 
-    def sample(self, data, prior=None, max_iters=float('inf'), threshold=1e-1):
+    def sample(self, data, prior=None, max_iters=float('inf'), threshold=1e-1, verbose=True):
         '''
         data : numpy.ndarray
         Data that we want to fit.
@@ -44,9 +44,8 @@ class ABCSampler:
             dis = self.distance(self.statistic(synthetic), self.statistic(data))
             if dis <= threshold:
                 return params
-            else:
-                pass
-                # print(dis)
+            elif verbose:
+                print(dis)
             num_iters += 1
             if num_iters > max_iters:
                 return None
