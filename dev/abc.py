@@ -22,7 +22,7 @@ class ABCSampler:
         self.distance = distance
         self.statistic = statistic
 
-    def sample(self, data, prior=None, max_iters=float('inf'), threshold=1e-1, verbose=True):
+    def sample(self, data, max_iters=float('inf'), threshold=1e-1, verbose=True):
         '''
         data : numpy.ndarray
         Data that we want to fit.
@@ -33,12 +33,13 @@ class ABCSampler:
 
         threshold : scalar
         The maximum value of distance allowable to accept candidate.
+
+        verbose : boolean
+        Whether to print information like the distance at each step.
         '''
         num_iters = 0
-        if prior is None:
-            prior = self.prior
         while True:
-            params = prior.rvs()
+            params = self.prior.rvs()
             candidate = self.candidate_getter(params)
             synthetic = candidate(len(data))
             dis = self.distance(self.statistic(synthetic), self.statistic(data))
