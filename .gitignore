@@ -1,1 +1,4 @@
 *.h5
+data/idem_pdets.npy
+data/catalog_synth.csv
+data/idem_pdets_i.npy
