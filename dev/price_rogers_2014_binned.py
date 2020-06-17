@@ -385,3 +385,62 @@ def prCovTau0sqR(delta, T, tau, f0, texp, Ttot, gamma, sigma):
             4*texp**2*(12*texp - 11*Ttot)*tau**2 + texp*(-6*texp + 11*Ttot)*
             tau**3 - Ttot*tau**4)))
 
+if __name__ == "__main__":
+    # for the sake of making this quick demo independent of the other files, I'll repeat a couple of functions
+    import os
+    import pandas as pd
+    import scipy.stats as stats
+    import sys
+    sys.path.append('..')
+
+    def get_catalog(name, basepath="../data", **kwargs):
+        fn = os.path.join(basepath, "{0}.h5".format(name))
+        if os.path.exists(fn):
+            return pd.read_hdf(fn, name, **kwargs)
+        if not os.path.exists(basepath):
+            os.makedirs(basepath)
+        print("Downloading {0}...".format(name))
+        url = ("http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/"
+            "nph-nstedAPI?table={0}&select=*").format(name)
+        r = requests.get(url)
+        if r.status_code != requests.codes.ok:
+            r.raise_for_status()
+        fh = BytesIO(r.content)
+        df = pd.read_csv(fh)
+        df.to_hdf(fn, name, format="t")
+        return df
+
+    re = 0.009158
+
+    def get_a(period, mstar, Go4pi=2945.4625385377644/(4*np.pi*np.pi)):
+        return (Go4pi*period*period*mstar) ** (1./3)
+
+    kois = get_catalog('q1_q16_koi')
+    stellar = get_catalog('q1_q16_stellar')
+    kois = kois[kois["kepid"].isin(stellar["kepid"])]
+    kois = kois[np.isfinite(kois["koi_prad"])]
+    stellar = stellar[np.isfinite(stellar.mass)]
+    combined = pd.merge(kois, stellar, on='kepid')
+
+    i = 10 # index of the KOI in question
+    p = combined['koi_period'][i]
+    r = combined['koi_prad'][i]
+    rstar = combined['radius'][i]
+    ror = r / rstar * re
+    d = ror ** 2
+    b = combined['koi_impact'][i]
+    cosincl = np.cos(combined['koi_incl'][i] * np.pi / 180)
+    ecc = stats.rayleigh(scale=0.03).rvs() * 0
+    aor = get_a(p, combined['mass'][i]) / rstar
+    tau0 = p * b / (2 * np.pi * cosincl * np.sqrt(1 - ecc ** 2)) * 1 / (aor ** 2)
+    T = 2 * tau0 * np.sqrt(1 - b ** 2)
+    D = (p / np.pi) * np.arcsin(np.sqrt((1 + p / rstar) ** 2 - b ** 2) / aor)
+    tau0 = p * b / (2 * np.pi * cosincl * np.sqrt(1 - ecc ** 2)) * 1 / (aor ** 2)
+    T = 2 * tau0 * np.sqrt(1 - b ** 2)
+    tau = 2 * tau0 * r / np.sqrt(1 - b ** 2)
+    f0 = 1
+    texp = 1765.5 / 60 / 60 / 24 # s to days
+    gamma = 1 / texp
+    sigma = 1 # 'model uncertainty'
+    price_uncertainty_params = [d, T, tau, f0, texp, p, gamma, sigma]
+    print(prVarDelta(*price_uncertainty_params))
