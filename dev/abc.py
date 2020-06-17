@@ -56,9 +56,11 @@ class ABCSampler:
         Carries out population Monte Carlo ABC, based on Beaumont et al. (2009).
         https://arxiv.org/pdf/0805.2256.pdf
         '''
+        assert num_walkers > 1, "need at least 2 walkers to establish covariance."
         sampler = partial(self.sample, data=data, max_iters=float('inf'))
         params_matrix = np.array([sampler(threshold=thresholds[0]) for _ in range(num_walkers)])
         weights = np.ones((num_walkers,)) / num_walkers
+        print(params_matrix)
         tau = 2 * np.cov(params_matrix.T)
         for thresh in thresholds[1:]:
             new_params_matrix = np.empty_like(params_matrix)
