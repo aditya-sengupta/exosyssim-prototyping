@@ -71,3 +71,12 @@ def kois_cuts(kois, period_rng, rp_rng):
 
     print("Selected {0} KOIs after cuts".format(len(kois)))
     return kois
+
+def get_paired_kepler_catalogs():
+    kois = get_kois()
+    stellar = get_stellar()
+    kois = kois[kois["kepid"].isin(stellar["kepid"])]
+    kois = kois[np.isfinite(kois["koi_prad"])]
+    stellar = stellar[np.isfinite(stellar.mass)]
+    return kois, stellar
+    

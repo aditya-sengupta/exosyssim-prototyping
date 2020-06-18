@@ -76,5 +76,3 @@ class ABCSampler:
             weights = new_weights / sum(new_weights)
         return np.mean(params_matrix, axis=0) # average the final results
 
-
-
