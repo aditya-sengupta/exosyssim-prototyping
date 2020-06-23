@@ -8,7 +8,8 @@ import pandas as pd
 import os
 import requests
 
-from constants import re, c, s
+from .constants import re, c, s
+from .constants import cdpp_cols, cdpp_vals, mesthres_cols, mesthres_vals
 
 def get_catalog(name, basepath="../data", **kwargs):
     fn = os.path.join(basepath, "{0}.h5".format(name))
@@ -92,13 +93,6 @@ def get_snr(rp, rstar, cdpp, period=None, ecc=None, aor=None, tau=None):
 
 def get_tau(period, ecc, aor):
     return 6 * period * np.sqrt(1 - ecc**2) / aor
-
-if not __name__ == "__main__":
-    stellar_keys = get_stellar().keys()
-    cdpp_cols = [k for k in stellar_keys if k.startswith("rrmscdpp")]
-    cdpp_vals = np.array([k[-4:].replace("p", ".") for k in cdpp_cols], dtype=float)
-    mesthres_cols = [k for k in stellar_keys if k.startswith("mesthres")]
-    mesthres_vals = np.array([k[-4:].replace("p", ".") for k in mesthres_cols], dtype=float)
 
 def get_bins(bins):
     if bins == "dfm":

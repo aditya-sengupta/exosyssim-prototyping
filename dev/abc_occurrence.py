@@ -2,18 +2,18 @@ import numpy as np
 import scipy.stats as stats
 import pandas as pd
 
-from abc_generic import ABCSampler
-from completeness import get_pcomp
-from utils import get_paired_kepler_catalogs, get_snr, cdpp_cols, cdpp_vals
-from constants import minmeanmax, Go4pi, re
-from covariance import make_cov
+from .abc_generic import ABCSampler
+from .completeness import get_pcomp
+from .utils import get_paired_kepler_catalogs, get_snr, cdpp_cols, cdpp_vals
+from .constants import minmeanmax, Go4pi, re, eps
+from .covariance import make_cov
 
 def log_with_extra(bins):
     log_bins = np.log(bins)
     return np.append(log_bins, max(log_bins) + 1) # arbitrary finite number
     # this is inelegant and should be changed later
 
-def generate_planet_catalog(f, stars, log_p_bins, log_r_bins):
+def generate_planet_catalog(f, stars, log_p_bins, log_r_bins, add_noise=True):
     '''
     Takes in the occurrence rate matrix f and generates `num_planets' planets, 
     represented as a matrix of state (row) vectors.
@@ -55,24 +55,25 @@ def generate_planet_catalog(f, stars, log_p_bins, log_r_bins):
     aor = (Go4pi * periods * periods * stellar_catalog.mass.values) ** (1./3) / stellar_catalog.radius.values
     arcsin_args = np.sqrt((1 + ror) ** 2 - impacts ** 2) / aor
     problems = np.where(arcsin_args > 1)[0]
-    impacts[problems] = np.minimum(1, np.sqrt((1 + ror[problems]) ** 2 - (aor[problems]) ** 2))
+    impacts[problems] = np.minimum(1 - eps, np.sqrt((1 + ror[problems]) ** 2 - (aor[problems]) ** 2))
     # some impacts are 1 + eps
     arcsin_args[problems] = 1
     D = (periods / np.pi) * np.arcsin(arcsin_args)
     tau0 = periods * impacts / (2 * np.pi * cosincl * np.sqrt(1 - eccens ** 2)) * 1 / (aor ** 2)
     T = 2 * tau0 * np.sqrt(1 - impacts ** 2)
-    tau = 2 * tau0 * np.divide(ror, np.sqrt(1 - impacts ** 2), where = impacts != 1)
+    tau = 2 * tau0 * np.divide(ror, np.sqrt(1 - impacts ** 2))
     sigma = 1 # 'model uncertainty'
     nums_transits = stellar_catalog['dataspan'].values * stellar_catalog['dutycycle'].values / periods
-    snr = get_snr(pl_rads, stars.radius.values, stellar_catalog[cdpp_cols], tau=tau)
+    snr = get_snr(pl_rads, stellar_catalog.radius.values, stellar_catalog[cdpp_cols].values, tau=tau)
 
-    cov = make_cov(depths, T, tau, periods, nums_transits, snr, sigma, diagonal=True)
-    noise = np.random.multivariate_normal(np.zeros(len(cov),), cov, size=num_planets).T
-    periods += noise[1] 
-    omegas += noise[0] / periods * 2 * np.pi # I think
-    D += noise[2]
-    depths += noise[3]
-    pl_rads = np.sqrt(depths) * stellar_catalog.radius / re
+    if add_noise:
+        cov = make_cov(depths, T, tau, periods, nums_transits, snr, sigma, diagonal=True)
+        noise = np.array([np.random.multivariate_normal(np.zeros(len(cov[i]),), cov[i]).T for i in range(num_planets)]).T
+        periods += noise[1] 
+        omegas += noise[0] / periods * 2 * np.pi # I think
+        D += noise[2]
+        # depths += noise[3] # WARNING: transit depth noise is weird (check units?)
+        pl_rads = np.sqrt(depths) * stellar_catalog.radius / re
 
     # [kepid, period, radius, ecc, cosincl, impact param b, long of periastron omega, transit depth d, transit duration D, is_detected]
     planets_matrix = np.vstack((stellar_catalog.kepid, periods, pl_rads, eccens, cosincl, impacts, omegas, depths, D)).T

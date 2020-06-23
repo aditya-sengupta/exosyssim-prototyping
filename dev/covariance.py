@@ -5,9 +5,11 @@ Adapted from Julia source at https://github.com/ExoJulia/ExoplanetsSysSim.jl/blo
 
 import numpy as np
 
-from constants import kepler_texp as texp
-from constants import LC_rate
-from utils import get_catalog, get_snr
+from .constants import kepler_texp as texp
+from .constants import LC_rate
+from .constants import eps
+from .constants import minmeanmax
+from .utils import get_catalog, get_snr
 import warnings
 
 def make_pd(matrix):
@@ -24,7 +26,7 @@ def make_pd(matrix):
 	matrix_pd : np.ndarray
 	The matrix with the smallest eigenvalue shifted.
 	'''
-	eps = 1e-3
+	matrix = np.nan_to_num(matrix)
 	smallest_eig = np.min(np.linalg.eigvals(matrix))
 	if smallest_eig > 0:
 		return matrix
@@ -53,8 +55,12 @@ def make_cov(delta, T, tau, period, num_tr, snr, sigma, diagonal=False):
 	diagonal : boolean
 	Whether to keep only diagonal elements.
 	'''
-	gamma = LC_rate * num_tr
+	if len(delta) > 1:
+		cov_shape = (4, 4, len(delta))
+	else:
+		cov_shape = (4, 4)
 
+	gamma = LC_rate * num_tr
 	tau3 = tau ** 3
 	texp3 = texp ** 3
 	a1 = (10*tau3+2*texp ** 3-5*tau*texp ** 2)/tau3
@@ -88,15 +94,24 @@ def make_cov(delta, T, tau, period, num_tr, snr, sigma, diagonal=False):
 	b14 =  (6*texp-2*tau)/texp
 
 	Q = snr/np.sqrt(num_tr)
-	sigma_t0 = np.sqrt(0.5*tau*T/(1-texp/(3*tau)))/Q if tau >= texp else np.sqrt(0.5*texp*T/(1-tau/(3*texp)))/Q
+	tmax = np.maximum(tau, texp)
+	sigma_t0 = np.sqrt(0.5*tmax*T/(1-texp/(3*tmax)))/Q
 	sigma_period = sigma_t0/np.sqrt(num_tr)
-	sigma_duration = sigma*np.sqrt(abs(6*tau*a14/(delta*delta*a5)) / gamma) if tau>=texp else sigma*np.sqrt(abs(6*texp*b9/(delta*delta*b7)) / gamma)
-	sigma_depth = sigma*np.sqrt(abs(-24*a11*a2/(tau*a5)) / gamma) if tau>=texp else sigma*np.sqrt(abs(24*b1/(texp*b7)) / gamma)
+	sigma_dur1 = sigma*np.sqrt(abs(6*tau*a14/(delta*delta*a5)) / gamma)
+	sigma_dur2 = sigma*np.sqrt(abs(6*texp*b9/(delta*delta*b7)) / gamma)
+	choose_1_where = tau >= texp
+	sigma_duration = sigma_dur1 * choose_1_where + sigma_dur2 * (1 - choose_1_where)
+	sigma_dep1 = sigma*np.sqrt(abs(-24*a11*a2/(tau*a5)) / gamma)
+	sigma_dep2 = sigma*np.sqrt(abs(24*b1/(texp*b7)) / gamma)
+	sigma_depth = sigma_dep1 * choose_1_where + sigma_dep2 * (1 - choose_1_where)
 
 	if diagonal:     # Assume uncertainties uncorrelated (Diagonal)
-		return np.diag([sigma_t0, sigma_period, sigma_duration, sigma_depth])
+		return np.array([
+			make_pd(np.diag([sigma_t0[i], sigma_period[i], sigma_duration[i], sigma_depth[i]])) for i in range(len(sigma_t0))
+		])
 	else:
 		warnings.warn("this is currently not the same covariance as when diagonal=True: covariance is of {tau, T, delta, f0}")
+		warnings.warn("dimensions here are for the scalar case")
 		cov = np.zeros(4,4)
 		if tau>=texp:
 			cov[0,0] = 24*tau*a10/(delta*delta*a5)
