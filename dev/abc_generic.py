@@ -1,15 +1,9 @@
 import numpy as np
 from scipy import linalg, stats
 from functools import partial
-from abc import ABC as BaseClass
-'''
-There's an unfortunate naming collision: the import is of an abstract base class 
-and has nothing to do with approximate Bayesian computation.
-The line "from abc import ABC" does nothing for statistics.
-To reflect that I've aliased it to BaseClass.
-'''
+from matplotlib import pyplot as plt
 
-class ABCSampler(BaseClass):
+class ABCSampler:
     def __init__(self, prior, candidate_getter, distance=lambda a, b: abs(a - b), statistic=np.mean):
         '''
         prior : stats.rv_continuous or stats.rv_discrete object
@@ -29,7 +23,7 @@ class ABCSampler(BaseClass):
         self.distance = distance
         self.statistic = statistic
 
-    def sample(self, data, max_iters=float('inf'), threshold=1e-1, verbose=True):
+    def sample(self, data, prior=None, max_iters=float('inf'), threshold=1e-1, verbose=True):
         '''
         data : numpy.ndarray
         Data that we want to fit.
@@ -45,6 +39,8 @@ class ABCSampler(BaseClass):
         Whether to print information like the distance at each step.
         '''
         num_iters = 0
+        if prior is None:
+            prior = self.prior
         while True:
             params = self.prior.rvs()
             candidate = self.candidate_getter(params)
@@ -67,8 +63,8 @@ class ABCSampler(BaseClass):
         sampler = partial(self.sample, data=data, max_iters=float('inf'))
         params_matrix = np.array([sampler(threshold=thresholds[0]) for _ in range(num_walkers)])
         weights = np.ones((num_walkers,)) / num_walkers
-        print(params_matrix)
         tau = 2 * np.cov(params_matrix.T)
+        print(np.linalg.matrix_rank(tau))
         for thresh in thresholds[1:]:
             new_params_matrix = np.empty_like(params_matrix)
             new_weights = np.empty_like(weights)
@@ -82,4 +78,3 @@ class ABCSampler(BaseClass):
             params_matrix = new_params_matrix
             weights = new_weights / sum(new_weights)
         return np.mean(params_matrix, axis=0) # average the final results
-
