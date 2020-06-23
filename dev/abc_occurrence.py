@@ -2,48 +2,16 @@ import numpy as np
 import scipy.stats as stats
 import pandas as pd
 
-from .abc_generic import ABCSampler
-from .completeness import get_pcomp
-from .dataprocessing import get_paired_kepler_catalogs
-from .price_rogers_2014_binned import prVarDelta # and others later
-from .utils import minmeanmax
-
-Go4pi = 2945.4625385377644/(4*np.pi*np.pi)
-re = 0.009171
+from abc_generic import ABCSampler
+from completeness import get_pcomp
+from utils import get_paired_kepler_catalogs, get_snr, cdpp_cols, cdpp_vals
+from constants import minmeanmax, Go4pi, re
+from covariance import make_cov
 
 def log_with_extra(bins):
     log_bins = np.log(bins)
     return np.append(log_bins, max(log_bins) + 1) # arbitrary finite number
     # this is inelegant and should be changed later
-
-def add_uncertainties(price_uncertainty_params):
-    '''
-    Adds uncertainties to parameters based on Price and Rogers (2014).
-    
-    Arguments
-    ---------
-    price_uncertainty_parameters : list of scalars / numpy.ndarrays.
-    The parameters in the signature from each of the Price/Rogers variance functions.
-    (delta, T, tau, f0, texp, Ttot, gamma, sigma).
-    delta - transit depth
-    T - full-width at half-max transit time
-    tau - duration of ingress and egress
-    f0 - starting flux, which we set to 1.
-    texp - time of exposure, about 30 minutes for Kepler.
-    Ttot -  same as P in this case, I think
-    gamma - sampling rate
-    sigma - model uncertainty
-    
-    Returns
-    -------
-    perturbed_parameters : list of scalars / numpy.ndarrays.
-    The same list, but with white noise added.
-    '''
-    var_d = abs(np.vectorize(prVarDelta)(*price_uncertainty_params)) * 0 # abs is stopgap
-    noise = np.random.normal(0, np.sqrt(var_d), size=(len(price_uncertainty_params[0]),))
-    noise = np.nan_to_num(noise)
-    price_uncertainty_params[0] += noise
-    return price_uncertainty_params
 
 def generate_planet_catalog(f, stars, log_p_bins, log_r_bins):
     '''
@@ -51,7 +19,7 @@ def generate_planet_catalog(f, stars, log_p_bins, log_r_bins):
     represented as a matrix of state (row) vectors.
     
     Each row has: period in days; radius in Earth radii; eccentricity; cosine of inclination; impact parameter;
-    time of first transit in BJD; fractional transit depth; transit duration in days; is_detected (bool).
+    longitude of periastron; fractional transit depth; transit duration in days; is_detected (bool).
     
     Arguments
     ---------
@@ -69,6 +37,7 @@ def generate_planet_catalog(f, stars, log_p_bins, log_r_bins):
     stellar_catalog = pd.DataFrame(np.repeat(stars.values, nums_planets, axis=0))
     stellar_catalog.columns = stars.columns
     stellar_catalog = stellar_catalog.astype(stars.dtypes)
+    
     flat_f = f.flatten()
     buckets = np.random.choice(f.size, p = flat_f / lam, size=(num_planets,))
     p_left_inds = buckets // f.shape[1]
@@ -93,17 +62,18 @@ def generate_planet_catalog(f, stars, log_p_bins, log_r_bins):
     tau0 = periods * impacts / (2 * np.pi * cosincl * np.sqrt(1 - eccens ** 2)) * 1 / (aor ** 2)
     T = 2 * tau0 * np.sqrt(1 - impacts ** 2)
     tau = 2 * tau0 * np.divide(ror, np.sqrt(1 - impacts ** 2), where = impacts != 1)
-    f0 = 1
-    texp = 1765.5 / 60 / 60 / 24 # s to days
-    gamma = 1 / texp # inverse s to inverse days
     sigma = 1 # 'model uncertainty'
-    
-    price_uncertainty_params = [depths, T, tau, f0, texp, periods, gamma, sigma]
-    price_uncertainty_params = add_uncertainties(price_uncertainty_params)
-    
-    depths = price_uncertainty_params[0]
+    nums_transits = stellar_catalog['dataspan'].values * stellar_catalog['dutycycle'].values / periods
+    snr = get_snr(pl_rads, stars.radius.values, stellar_catalog[cdpp_cols], tau=tau)
+
+    cov = make_cov(depths, T, tau, periods, nums_transits, snr, sigma, diagonal=True)
+    noise = np.random.multivariate_normal(np.zeros(len(cov),), cov, size=num_planets).T
+    periods += noise[1] 
+    omegas += noise[0] / periods * 2 * np.pi # I think
+    D += noise[2]
+    depths += noise[3]
     pl_rads = np.sqrt(depths) * stellar_catalog.radius / re
-    periods = price_uncertainty_params[5]
+
     # [kepid, period, radius, ecc, cosincl, impact param b, long of periastron omega, transit depth d, transit duration D, is_detected]
     planets_matrix = np.vstack((stellar_catalog.kepid, periods, pl_rads, eccens, cosincl, impacts, omegas, depths, D)).T
     planetary_catalog = pd.DataFrame(planets_matrix, columns=planet_params)

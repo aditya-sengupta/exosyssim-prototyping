@@ -1,5 +1,5 @@
 #  Downloaded from https://www.cfa.harvard.edu/~eprice/files/price_rogers_2014_binned.py on 2020-06-10.
-#
+#  Use of this code in the occurrence-rates package is deprecated as of 2020-06-22, and the file is now just here for historical reasons.
 #  Copyright 2014 Ellen Price <eprice@caltech.edu>
 #
 #  Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,6 @@
 #
 
 import numpy as np
-
 
 def prVarTc(delta, T, tau, f0, texp, Ttot, gamma, sigma):
     if tau > texp:

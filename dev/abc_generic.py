@@ -1,8 +1,15 @@
 import numpy as np
 from scipy import linalg, stats
 from functools import partial
+from abc import ABC as BaseClass
+'''
+There's an unfortunate naming collision: the import is of an abstract base class 
+and has nothing to do with approximate Bayesian computation.
+The line "from abc import ABC" does nothing for statistics.
+To reflect that I've aliased it to BaseClass.
+'''
 
-class ABCSampler:
+class ABCSampler(BaseClass):
     def __init__(self, prior, candidate_getter, distance=lambda a, b: abs(a - b), statistic=np.mean):
         '''
         prior : stats.rv_continuous or stats.rv_discrete object
