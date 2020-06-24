@@ -69,7 +69,7 @@ class ABCSampler:
         params_matrix = np.array([self.prior.rvs() for _ in range(num_walkers)])
         weights = np.ones((num_walkers,)) / num_walkers
         tau = 2 * np.cov(params_matrix.T)
-        best_distance = max(self.distance(self.statistic(self.candidate_getter(p)(len(data))), self.statistic(data)) for p in params_matrix)
+        best_distance = min(self.distance(self.statistic(self.candidate_getter(p)(len(data))), self.statistic(data)) for p in params_matrix)
         try:
             k = 0
             thresh = thresholds[0]
@@ -82,12 +82,13 @@ class ABCSampler:
                     thresh = np.sqrt(thresh * best_distance)
                     print("Raising threshold to {0}".format(thresh))
                     new_params[none_inds] = self.sample_pmc_helper(sample, params_matrix, weights, tau, len(none_inds), thresh)
+                    nans = [all(np.isnan(x)) for x in new_params]
                 best_distance = thresh
                 new_weights = np.empty_like(weights)
                 for i in range(num_walkers):
                     new_weights[i] = self.prior.pdf(new_params[i]) / np.dot(weights, np.prod(stats.norm.pdf(
                         np.linalg.inv(linalg.sqrtm(tau)).dot((new_params[i] - params_matrix).T)), axis=0)) # is the sqrtm needed?
-                params_matrix = np.array(new_params)
+                params_matrix = new_params
                 weights = new_weights / sum(new_weights)
                 tau = 2 * np.cov(params_matrix.T) 
                 if np.isclose(thresh, thresholds[k], atol=1e-3):
