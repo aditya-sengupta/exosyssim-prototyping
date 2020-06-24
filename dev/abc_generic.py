@@ -52,55 +52,52 @@ class ABCSampler:
                 print(dis)
             num_iters += 1
             if num_iters > max_iters:
-                return None
+                return np.ones_like(params) * np.nan
+
+    def sample_pmc_helper(self, sample, params_matrix, weights, tau, num_to_get, thresh):
+        choices = np.random.choice(len(params_matrix), (num_to_get,), p=weights, replace=True)
+        centers = params_matrix[choices]
+        sampling_normals = [stats.multivariate_normal(center, tau) for center in centers]
+        return np.array([sample(prior=p, threshold=thresh, verbose=False, max_iters=5) for p in sampling_normals])
 
     def sample_pmc(self, data, thresholds, num_walkers, verbose=True):
         '''
         Carries out population Monte Carlo ABC, based on Beaumont et al. (2009).
         https://arxiv.org/pdf/0805.2256.pdf
         '''
-        if verbose:
-            print("Attempting to clear threshold", thresholds[0])
         sample = partial(self.sample, data=data, max_iters=float('inf'), verbose=False)
-        params_matrix = np.array([sample(threshold=thresholds[0]) for _ in range(num_walkers)])
+        params_matrix = np.array([self.prior.rvs() for _ in range(num_walkers)])
         weights = np.ones((num_walkers,)) / num_walkers
         tau = 2 * np.cov(params_matrix.T)
+        best_distance = max(self.distance(self.statistic(self.candidate_getter(p)(len(data))), self.statistic(data)) for p in params_matrix)
         try:
-            for k, thresh in enumerate(thresholds[1:]):
-                if verbose:
-                    print("Attempting to clear threshold", thresh)
+            k = 0
+            thresh = thresholds[0]
+            while thresh >= thresholds[-1]:
+                print("Attempting to cross threshold {0} on a max of {1}".format(thresh, best_distance))
+                new_params = self.sample_pmc_helper(sample, params_matrix, weights, tau, num_walkers, thresh)
+                nans = [all(np.isnan(x)) for x in new_params]
+                while any(nans):
+                    none_inds = np.where(nans)[0]
+                    thresh = np.sqrt(thresh * best_distance)
+                    print("Raising threshold to {0}".format(thresh))
+                    new_params[none_inds] = self.sample_pmc_helper(sample, params_matrix, weights, tau, len(none_inds), thresh)
+                best_distance = thresh
                 new_weights = np.empty_like(weights)
-                best_thresh = thresholds[k]
-                while not np.isclose(best_thresh, thresh):
-                    print("setting best thresh", best_thresh, thresh)
-                    new_params = []
-                    for i in range(num_walkers):
-                        center = params_matrix[np.random.choice(num_walkers, p=weights)]
-                        sampling_normal = stats.multivariate_normal(center, tau)
-                        param_i = sample(prior=sampling_normal, threshold=thresh, verbose=False, max_iters=20)
-                        new_params.append(param_i)
-                    sample_has_none = any([x is None for x in new_params])
-                    print('found Nones? {0}'.format(sample_has_none))
-                    if sample_has_none:
-                        none_inds = np.where([x is None for x in new_params])[0]
-                        thresh = np.sqrt(thresh * best_thresh)
-                        if verbose:
-                            print("Raising threshold to {0}".format(thresh))
-                    else:
-                        print(thresholds[k + 1], thresh)
-                        # if not np.isclose(thresholds[k + 1], thresh):
-                        print("hit this point")
-                        new_weights[i] = self.prior.pdf(param_i) / np.dot(weights, np.prod(stats.norm.pdf(
-                            np.linalg.inv(linalg.sqrtm(tau)).dot((param_i - params_matrix).T)), axis=0)) # is the sqrtm needed?
-                        best_thresh = thresh
-                        thresh = np.sqrt(thresh * thresholds[k + 1])
-                        print("Lowering threshold to {0}".format(thresh))
-                        params_matrix = np.array(new_params)
-                        weights = new_weights / sum(new_weights)
-                        tau = 2 * np.cov(params_matrix.T) 
+                for i in range(num_walkers):
+                    new_weights[i] = self.prior.pdf(new_params[i]) / np.dot(weights, np.prod(stats.norm.pdf(
+                        np.linalg.inv(linalg.sqrtm(tau)).dot((new_params[i] - params_matrix).T)), axis=0)) # is the sqrtm needed?
+                params_matrix = np.array(new_params)
+                weights = new_weights / sum(new_weights)
+                tau = 2 * np.cov(params_matrix.T) 
+                if np.isclose(thresh, thresholds[k], atol=1e-3):
+                    k += 1
+                    if k < len(thresholds):
+                        thresh = thresholds[k]
+                else:
+                    thresh = np.sqrt(thresh * thresholds[k])
         except KeyboardInterrupt:
             pass
-        print(weights)
         return np.mean(params_matrix, axis=0) # average the final results
 
 if __name__ == "__main__":
