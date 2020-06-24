@@ -59,22 +59,36 @@ class ABCSampler:
         Carries out population Monte Carlo ABC, based on Beaumont et al. (2009).
         https://arxiv.org/pdf/0805.2256.pdf
         '''
-        assert num_walkers > 1, "need at least 2 walkers to establish covariance."
-        sampler = partial(self.sample, data=data, max_iters=float('inf'))
-        params_matrix = np.array([sampler(threshold=thresholds[0]) for _ in range(num_walkers)])
+        print("Attempting to clear threshold", thresholds[0])
+        sample = partial(self.sample, data=data, max_iters=float('inf'), verbose=False)
+        params_matrix = np.array([sample(threshold=thresholds[0]) for _ in range(num_walkers)])
         weights = np.ones((num_walkers,)) / num_walkers
         tau = 2 * np.cov(params_matrix.T)
-        print(np.linalg.matrix_rank(tau))
-        for thresh in thresholds[1:]:
-            new_params_matrix = np.empty_like(params_matrix)
-            new_weights = np.empty_like(weights)
-            for i in range(num_walkers):
-                center = params_matrix[np.random.choice(num_walkers, p=weights)]
-                sampling_normal = stats.multivariate_normal(center, tau)
-                param_i = sampler(prior=sampling_normal, threshold=thresh)
-                new_params_matrix[i] = param_i
-                new_weights[i] = self.prior.pdf(param_i) / np.dot(weights, np.prod(stats.norm.pdf(
-                    np.linalg.inv(linalg.sqrtm(tau)).dot((param_i - params_matrix).T)), axis=0)) # is the sqrtm needed?
-            params_matrix = new_params_matrix
-            weights = new_weights / sum(new_weights)
+        try:
+            for k, thresh in enumerate(thresholds[1:]):
+                print("Attempting to clear threshold", thresh)
+                new_params_matrix = np.empty_like(params_matrix)
+                new_weights = np.empty_like(weights)
+                for i in range(num_walkers):
+                    center = params_matrix[np.random.choice(num_walkers, p=weights)]
+                    sampling_normal = stats.multivariate_normal(center, tau)
+                    param_i = None
+                    upper_thresh = thresholds[k]
+                    while param_i is None or not np.isclose(thresh, thresholds[k + 1]):
+                        param_i = sample(prior=sampling_normal, threshold=thresh, verbose=False, max_iters=20)
+                        if param_i is None:
+                            thresh = np.sqrt(thresh * upper_thresh)
+                            print("Raising threshold to {0}".format(thresh))
+                        else:
+                            upper_thresh = thresh
+                            thresh = np.sqrt(thresh * thresholds[k + 1])
+                            print("Lowering threshold to {0}".format(thresh))
+                    new_params_matrix[i] = param_i
+                    new_weights[i] = self.prior.pdf(param_i) / np.dot(weights, np.prod(stats.norm.pdf(
+                        np.linalg.inv(linalg.sqrtm(tau)).dot((param_i - params_matrix).T)), axis=0)) # is the sqrtm needed?
+                params_matrix = new_params_matrix
+                weights = new_weights / sum(new_weights)
+                tau = 2 * np.cov(params_matrix.T)
+        except KeyboardInterrupt:
+            pass
         return np.mean(params_matrix, axis=0) # average the final results
