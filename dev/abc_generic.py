@@ -47,9 +47,9 @@ class ABCSampler:
             synthetic = candidate(len(data))
             dis = self.distance(self.statistic(synthetic), self.statistic(data))
             if dis <= threshold:
+                if verbose:
+                    print("Accepted distance", dis)
                 return params
-            elif verbose:
-                print(dis)
             num_iters += 1
             if num_iters > max_iters:
                 return np.ones_like(params) * np.nan
@@ -58,7 +58,7 @@ class ABCSampler:
         choices = np.random.choice(len(params_matrix), (num_to_get,), p=weights, replace=True)
         centers = params_matrix[choices]
         sampling_normals = [stats.multivariate_normal(center, tau) for center in centers]
-        return np.array([sample(prior=p, threshold=thresh, verbose=False, max_iters=5) for p in sampling_normals])
+        return np.array([sample(prior=p, threshold=thresh, verbose=True, max_iters=5) for p in sampling_normals])
 
     def sample_pmc(self, data, thresholds, num_walkers, verbose=True):
         '''
@@ -69,21 +69,16 @@ class ABCSampler:
         params_matrix = np.array([self.prior.rvs() for _ in range(num_walkers)])
         weights = np.ones((num_walkers,)) / num_walkers
         tau = 2 * np.cov(params_matrix.T)
-        best_distance = max(self.distance(self.statistic(self.candidate_getter(p)(len(data))), self.statistic(data)) for p in params_matrix)
         try:
             k = 0
             thresh = thresholds[0]
-            while thresh >= thresholds[-1]:
-                print("Attempting to cross threshold {0} on a max of {1}".format(thresh, best_distance))
+            while k < len(thresholds) - 1:
                 new_params = self.sample_pmc_helper(sample, params_matrix, weights, tau, num_walkers, thresh)
                 nans = [all(np.isnan(x)) for x in new_params]
                 while any(nans):
                     none_inds = np.where(nans)[0]
-                    thresh = np.sqrt(thresh * best_distance)
-                    print("Raising threshold to {0}".format(thresh))
                     new_params[none_inds] = self.sample_pmc_helper(sample, params_matrix, weights, tau, len(none_inds), thresh)
                     nans = [all(np.isnan(x)) for x in new_params]
-                best_distance = thresh
                 new_weights = np.empty_like(weights)
                 for i in range(num_walkers):
                     new_weights[i] = self.prior.pdf(new_params[i]) / np.dot(weights, np.prod(stats.norm.pdf(
@@ -91,12 +86,9 @@ class ABCSampler:
                 params_matrix = new_params
                 weights = new_weights / sum(new_weights)
                 tau = 2 * np.cov(params_matrix.T) 
-                if np.isclose(thresh, thresholds[k], atol=1e-3):
-                    k += 1
-                    if k < len(thresholds):
-                        thresh = thresholds[k]
-                else:
-                    thresh = np.sqrt(thresh * thresholds[k])
+                k += 1
+                if k < len(thresholds) - 1:
+                    thresh = thresholds[k]
         except KeyboardInterrupt:
             pass
         return np.mean(params_matrix, axis=0) # average the final results
@@ -111,5 +103,5 @@ if __name__ == "__main__":
     gaussian_sampler = ABCSampler(prior, candidate_getter)
     data = np.random.normal(50, 10, (100,))
     print("Sample mean {0}, SD {1}".format(np.mean(data), np.std(data)))
-    params = gaussian_sampler.sample_pmc(np.random.normal(50, 10, (100,)), [1, 0.5, 0.1], 7)
+    params = gaussian_sampler.sample_pmc(np.random.normal(50, 10, (100,)), [1, 0.5, 0.1, 0.01, 1e-3, 1e-4], 7)
     print(params)
