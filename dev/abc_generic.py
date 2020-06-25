@@ -25,6 +25,8 @@ class ABCSampler:
 
     def sample(self, data, prior=None, max_iters=float('inf'), threshold=1e-1, verbose=True):
         '''
+        Arguments
+        ---------
         data : numpy.ndarray
         Data that we want to fit.
         Arbitrary shape, but a row should match the return type of candidate.
@@ -37,6 +39,14 @@ class ABCSampler:
 
         verbose : boolean
         Whether to print information like the distance at each step.
+
+        Returns
+        -------
+        params : numpy.ndarray
+        The accepted parameters.
+
+        dis : scalar
+        The distance between the synthetic and true data.
         '''
         num_iters = 0
         if prior is None:
@@ -49,16 +59,21 @@ class ABCSampler:
             if dis <= threshold:
                 if verbose:
                     print("Accepted distance", dis)
-                return params
+                return params, dis
             num_iters += 1
             if num_iters > max_iters:
-                return np.ones_like(params) * np.nan
+                return np.ones_like(params) * np.nan, np.inf
 
-    def sample_pmc_helper(self, sample, params_matrix, weights, tau, num_to_get, thresh):
+    def sample_pmc_helper(self, sample, params_matrix, weights, tau, num_to_get, thresh, verbose=True):
         choices = np.random.choice(len(params_matrix), (num_to_get,), p=weights, replace=True)
         centers = params_matrix[choices]
         sampling_normals = [stats.multivariate_normal(center, tau) for center in centers]
-        return np.array([sample(prior=p, threshold=thresh, verbose=True, max_iters=5) for p in sampling_normals])
+        params_matrix, distances = [], []
+        for p in sampling_normals:
+            pars, d = sample(prior=p, threshold=thresh, verbose=verbose, max_iters=50)
+            params_matrix.append(pars)
+            distances.append(d)
+        return np.array(params_matrix), np.array(distances)
 
     def sample_pmc(self, data, thresholds, num_walkers, verbose=True):
         '''
@@ -72,13 +87,21 @@ class ABCSampler:
         try:
             k = 0
             thresh = thresholds[0]
-            while k < len(thresholds) - 1:
-                new_params = self.sample_pmc_helper(sample, params_matrix, weights, tau, num_walkers, thresh)
+            while k < len(thresholds):
+                new_params, dists = self.sample_pmc_helper(sample, params_matrix, weights, tau, num_walkers, thresh, verbose=verbose)
                 nans = [all(np.isnan(x)) for x in new_params]
-                while any(nans):
+                while any(nans) and not any(dists < thresholds[-1]):
                     none_inds = np.where(nans)[0]
-                    new_params[none_inds] = self.sample_pmc_helper(sample, params_matrix, weights, tau, len(none_inds), thresh)
-                    nans = [all(np.isnan(x)) for x in new_params]
+                    if len(none_inds) > 0:
+                        none_params, none_dists = self.sample_pmc_helper(sample, params_matrix, weights, tau, len(none_inds), thresh, verbose=verbose)
+                        new_params[none_inds] = none_params
+                        dists[none_inds] = none_dists
+                        nans = [all(np.isnan(x)) for x in new_params]
+                if any(dists < thresholds[-1]):
+                    best_params = new_params[np.argmin(dists)]
+                    if verbose:
+                        print("Met minimum threshold with parameters {0}".format(best_params))
+                    return best_params
                 new_weights = np.empty_like(weights)
                 for i in range(num_walkers):
                     new_weights[i] = self.prior.pdf(new_params[i]) / np.dot(weights, np.prod(stats.norm.pdf(
@@ -87,11 +110,13 @@ class ABCSampler:
                 weights = new_weights / sum(new_weights)
                 tau = 2 * np.cov(params_matrix.T) 
                 k += 1
-                if k < len(thresholds) - 1:
+                if verbose:
+                    print("Met threshold {0} with parameters {1}".format(thresh, params_matrix[np.argmin(dists)]))
+                if k < len(thresholds):
                     thresh = thresholds[k]
         except KeyboardInterrupt:
             pass
-        return np.mean(params_matrix, axis=0) # average the final results
+        return params_matrix[np.argmin(dists)]
 
 if __name__ == "__main__":
     prior = stats.multivariate_normal(np.array([40, 11]), np.diag([20, 2]))
@@ -103,5 +128,5 @@ if __name__ == "__main__":
     gaussian_sampler = ABCSampler(prior, candidate_getter)
     data = np.random.normal(50, 10, (100,))
     print("Sample mean {0}, SD {1}".format(np.mean(data), np.std(data)))
-    params = gaussian_sampler.sample_pmc(np.random.normal(50, 10, (100,)), [1, 0.5, 0.1, 0.01, 1e-3, 1e-4], 7)
+    params = gaussian_sampler.sample_pmc(np.random.normal(50, 10, (100,)), [1, 0.5, 0.1, 0.01, 0.001], 7)
     print(params)
