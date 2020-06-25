@@ -69,7 +69,7 @@ class ABCSampler:
         params_matrix = np.array([self.prior.rvs() for _ in range(num_walkers)])
         weights = np.ones((num_walkers,)) / num_walkers
         tau = 2 * np.cov(params_matrix.T)
-        best_distance = min(self.distance(self.statistic(self.candidate_getter(p)(len(data))), self.statistic(data)) for p in params_matrix)
+        best_distance = max(self.distance(self.statistic(self.candidate_getter(p)(len(data))), self.statistic(data)) for p in params_matrix)
         try:
             k = 0
             thresh = thresholds[0]
