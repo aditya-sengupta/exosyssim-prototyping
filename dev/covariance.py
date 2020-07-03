@@ -5,11 +5,11 @@ Adapted from Julia source at https://github.com/ExoJulia/ExoplanetsSysSim.jl/blo
 
 import numpy as np
 
-from .constants import kepler_texp as texp
-from .constants import LC_rate
-from .constants import eps
-from .constants import minmeanmax
-from .utils import get_catalog, get_snr
+from constants import kepler_texp as texp
+from constants import LC_rate
+from constants import eps
+from constants import minmeanmax
+from utils import get_catalog, get_snr
 import warnings
 
 def make_pd(matrix):

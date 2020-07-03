@@ -8,8 +8,8 @@ import pandas as pd
 import os
 import requests
 
-from .constants import re, c, s
-from .constants import cdpp_cols, cdpp_vals, mesthres_cols, mesthres_vals
+from constants import re, c, s
+from constants import cdpp_cols, cdpp_vals, mesthres_cols, mesthres_vals
 
 def get_catalog(name, basepath="../data", **kwargs):
     fn = os.path.join(basepath, "{0}.h5".format(name))
@@ -28,7 +28,7 @@ def get_catalog(name, basepath="../data", **kwargs):
     df.to_hdf(fn, name, format="t")
     return df
 
-def get_stellar_keys():
+def get_kepler_stellar_keys():
     return get_catalog('q1_q16_stellar', start=0, stop=0).keys()
 
 def stellar_cuts(stlr, cut_type="dfm"):
@@ -54,11 +54,15 @@ def stellar_cuts(stlr, cut_type="dfm"):
     print("Selected {0} targets after cuts".format(len(stlr)))
     return stlr
 
-def get_stellar():
+def get_kepler_stellar():
     return get_catalog('q1_q16_stellar')
 
 def get_kois():
     return get_catalog('q1_q16_koi')
+
+def get_tess_catalog():
+    # tbd: API for this https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=TOI
+    return pd.read_csv('../data/TOI_2020.06.30_10.44.38.csv', comment='#')
 
 def kois_cuts(kois, period_rng, rp_rng):
     m = kois.koi_pdisposition == "CANDIDATE"
@@ -72,7 +76,7 @@ def kois_cuts(kois, period_rng, rp_rng):
 
 def get_paired_kepler_catalogs():
     kois = get_kois()
-    stellar = get_stellar()
+    stellar = get_kepler_stellar()
     kois = kois[kois["kepid"].isin(stellar["kepid"])]
     kois = kois[np.isfinite(kois["koi_prad"])]
     stellar = stellar[np.isfinite(stellar.mass)]

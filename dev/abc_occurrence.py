@@ -2,11 +2,11 @@ import numpy as np
 import scipy.stats as stats
 import pandas as pd
 
-from .abc_generic import ABCSampler
-from .completeness import get_pcomp
-from .utils import get_paired_kepler_catalogs, get_snr, cdpp_cols, cdpp_vals
-from .constants import minmeanmax, Go4pi, re, eps
-from .covariance import make_cov
+from abc_generic import ABCSampler
+from completeness import get_pcomp
+from utils import get_paired_kepler_catalogs, get_snr, cdpp_cols, cdpp_vals
+from constants import minmeanmax, Go4pi, re, eps
+from covariance import make_cov
 
 def log_with_extra(bins):
     log_bins = np.log(bins)

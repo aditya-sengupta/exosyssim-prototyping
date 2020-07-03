@@ -4,7 +4,7 @@ Plotting utilities, mostly directly from dfm.io/posts/exopop/.
 
 import numpy as np
 from matplotlib import pyplot as plt
-from .occurrence_models import powerlaw as population_model
+from occurrence_models import powerlaw as population_model
 
 def make_plot(pop_comp, x0, x, y, ax):
     pop = 0.5 * (pop_comp[:, 1:] + pop_comp[:, :-1])
