@@ -8,8 +8,8 @@ import pandas as pd
 import os
 import requests
 
-from constants import re, c, s
-from constants import cdpp_cols, cdpp_vals, mesthres_cols, mesthres_vals
+from .constants import re, c, s
+from .constants import cdpp_cols, cdpp_vals, mesthres_cols, mesthres_vals
 
 def get_catalog(name, basepath="../data", **kwargs):
     fn = os.path.join(basepath, "{0}.h5".format(name))

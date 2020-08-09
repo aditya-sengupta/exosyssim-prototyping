@@ -5,8 +5,8 @@ Refactored from source at dfm.io/posts/exopop/.
 
 import numpy as np
 from scipy.stats import gamma
-from utils import get_snr, get_tau, cdpp_cols, mesthres_cols, mesthres_vals
-from constants import pgam, re, Go4pi, c, s
+from .utils import get_snr, get_tau, cdpp_cols, mesthres_cols, mesthres_vals
+from .constants import pgam, re, Go4pi, c, s
 
 # Pre-compute and freeze the gamma function from Equation (5) in
 # Burke et al., along with the CDPP and MES values/thresholds.
