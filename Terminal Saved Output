@@ -1,0 +1,1180 @@
+Last login: Tue Jun 30 12:26:28 on ttys005
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > cd ..
+adityasengupta ~/.julia/dev > cd ExoplanetsSysSim/
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > ls
+LICENSE		Manifest.toml	Project.toml	README.md	data		deps		examples	src		test
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > cd examples
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples > cd dr25_gaia_m
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_m > julia
+               _
+   _       _ _(_)_     |  Documentation: https://docs.julialang.org
+  (_)     | (_) (_)    |
+   _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+  | | | | | | |/ _` |  |
+  | | |_| | | | (_| |  |  Version 1.4.2 (2020-05-23)
+ _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+|__/                   |
+
+julia> using Pkg
+
+julia> Pkg.activate(".")
+ Activating new environment at `~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_m/Project.toml`
+
+julia> Pkg.instantiate()
+   Updating registry at `~/.julia/registries/General`
+   Updating git-repo `https://github.com/JuliaRegistries/General.git`
+   Updating `~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_m/Project.toml`
+ [no changes]
+   Updating `~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_m/Manifest.toml`
+ [no changes]
+
+julia> exit()
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_m > cd ..
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples > cd ..
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   Manifest.toml
+	modified:   Project.toml
+	modified:   examples/dr25_gaia_m/abc_setup.jl
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	examples/dr25_gaia_m/Manifest.toml
+	examples/dr25_gaia_m/Project.toml
+
+no changes added to commit (use "git add" and/or "git commit -a")
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > git remot -v
+git: 'remot' is not a git command. See 'git --help'.
+
+The most similar command is
+	remote
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > git remote -v
+fork	https://github.com/aditya-sengupta/ExoplanetsSysSim.jl.git (fetch)
+fork	https://github.com/aditya-sengupta/ExoplanetsSysSim.jl.git (push)
+origin	https://github.com/ExoJulia/ExoplanetsSysSim.jl.git (fetch)
+origin	https://github.com/ExoJulia/ExoplanetsSysSim.jl.git (push)
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > git pull origin master
+remote: Enumerating objects: 22, done.
+remote: Counting objects: 100% (22/22), done.
+remote: Compressing objects: 100% (18/18), done.
+remote: Total 22 (delta 9), reused 16 (delta 4), pack-reused 0
+Unpacking objects: 100% (22/22), done.
+From https://github.com/ExoJulia/ExoplanetsSysSim.jl
+ * branch            master     -> FETCH_HEAD
+   d945923..2e3d6b0  master     -> origin/master
+hint: Waiting for your editor to close the file... error: There was a problem with the editor 'vi'.
+Not committing merge; use 'git commit' to complete the merge.
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > git loglinen
+git: 'loglinen' is not a git command. See 'git --help'.
+
+The most similar command is
+	logline
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > git logline
+* d82fde5 - (HEAD -> master, fork/master) changed stellar table (5 days ago) <Aditya Sengupta>
+* e7af06e - first fork commit (7 days ago) <Aditya Sengupta>
+*   d945923 - Merge pull request #13 from dch216/master (2 weeks ago) <Eric Ford>
+|\  
+| * 225307e - Completed documentation for transit_observations.jl (2 weeks ago) <dch216>
+| * e01c799 - Add documentation for transit duration/depth (3 weeks ago) <dch216>
+| * 355303a - Fix function call (3 weeks ago) <dch216>
+| * 727f6b8 - More Function Documentation (3 weeks ago) <dch216>
+| * e498dd3 - Added Documentation to Functions (3 weeks ago) <dch216>
+| * f590513 - Update function documentation (4 weeks ago) <dch216>
+| *   00ad8cf - Merge remote-tracking branch 'upstream/master' (5 weeks ago) <dch216>
+| |\  
+| |/  
+|/|   
+* | 9fd7213 - Updated list of publications/citations in README (8 weeks ago) <Eric Ford>
+* |   8db1908 - Merge branch 'master' of github.com:ExoJulia/ExoplanetsSysSim.jl (8 weeks ago) <Eric Ford>
+|\ \  
+| * \   906a78c - Merge pull request #12 from hematthi/master (8 weeks ago) <Eric Ford>
+| |\ \  
+| | * | c39eb05 - Fix deprecated syntax (8 weeks ago) <Matthias Yang He>
+| | * |   33972df - Merge pull request #11 from ExoJulia/master (8 weeks ago) <Matthias Yang He>
+| | |\ \  
+| | |/ /  
+| |/| |   
+| | * |   f226d71 - Merge pull request #10 from ExoJulia/master (8 weeks ago) <Matthias Yang He>
+| | |\ \  
+* | | \ \   f03e101 - Merge branch 'master' of github.com:ExoJulia/ExoplanetsSysSim.jl (8 weeks ago) <Eric Ford>
+|\ \ \ \ \  
+| |/ / / /  
+| * | | |   7fd974c - Merge pull request #11 from dch216/master (8 weeks ago) <Eric Ford>
+| |\ \ \ \  
+| | |_|/ /  
+| |/| | |   
+* | | | | 2563b40 - typed array for SimParam[Pkg.installed] (8 weeks ago) <Eric Ford>
+* | | | | e44f01f - Replaced Pkg.installed() (8 weeks ago) <Eric Ford>
+| | | | * a3eaad3 - Add some function comments to src files (5 weeks ago) <dch216>
+| | | |/  
+| | |/|   
+| | * | dc09773 - Fix Mistake with HasProperty on SimParam (8 weeks ago) <dch216>
+| | * |   90b154a - Merge remote-tracking branch 'upstream/master' (8 weeks ago) <dch216>
+| | |\ \  
+| | |/ /  
+| |/| |   
+| * | | eeffd3d - Update README for examples folder with references (8 weeks ago) <Eric Ford>
+| * | |   7e85a45 - Merge pull request #10 from dch216/master (8 weeks ago) <Eric Ford>
+| |\ \ \  
+|/ / / /  
+| | _ /   
+| |  /    
+| * | 825216b - Minor fix to Kept Symbols (8 weeks ago) <dch216>
+| * | 3bfdfb5 - Update DR25 M Occ. Rate Calc. Func. to Julia v1.4 (8 weeks ago) <dch216>
+| * | 05da462 - Edit Example Param to Cover Only One Period Bin (8 weeks ago) <dch216>
+| * | 699ae79 - Update DR25 Occ. Rate Calc. Func. to Julia v1.4 (8 weeks ago) <dch216>
+| * | 361c6db - Fix Deprecation Warnings; Workaround for Broken Constructor (8 weeks ago) <dch216>
+| * | 84c849f - Add DR25 Binned Occ. Rate Examples (8 weeks ago) <dch216>
+| * | 15e09d0 - Ignore Emacs Backup Files (8 weeks ago) <dch216>
+| * | 5ef16f2 - Update KOI Catalog Load; Fix DataFrame Deprec. Warn (8 weeks ago) <dch216>
+| * |   ebccce7 - Merge remote-tracking branch 'upstream/master' (9 weeks ago) <dch216>
+| |\ \  
+| |/ /  
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > git checkout d945923
+M	Manifest.toml
+M	Project.toml
+M	examples/dr25_gaia_m/abc_setup.jl
+M	examples/dr25_gaia_m/dr25_binrates_func.jl
+Note: checking out 'd945923'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at d945923 Merge pull request #13 from dch216/master
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > git pull origin master
+From https://github.com/ExoJulia/ExoplanetsSysSim.jl
+ * branch            master     -> FETCH_HEAD
+Updating d945923..2e3d6b0
+Fast-forward
+ examples/dr25_gaia_m/dr25_binrates_func.jl | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > julia
+               _
+   _       _ _(_)_     |  Documentation: https://docs.julialang.org
+  (_)     | (_) (_)    |
+   _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+  | | | | | | |/ _` |  |
+  | | |_| | | | (_| |  |  Version 1.4.2 (2020-05-23)
+ _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+|__/                   |
+
+julia> import Pkg
+
+julia> Pkg.activate(".")
+ Activating environment at `~/.julia/dev/ExoplanetsSysSim/Project.toml`
+
+julia> cd("examples/dr25_gaia_m")
+
+julia> include("abc_run.jl")
+[ Info: Precompiling ExoplanetsSysSim [e0ba718c-02ec-11e9-384b-dd2930072415]
+Setting up simulation...
+┌ Warning: `CSV.read(input; kw...)` is deprecated in favor of `DataFrame!(CSV.File(input; kw...))`
+└ @ CSV ~/.julia/packages/CSV/OM6FO/src/CSV.jl:40
+# Finished reading in KOI data
+ERROR: LoadError: File /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/dr25m_osds.jld cannot be found
+Stacktrace:
+ [1] error(::String, ::String, ::String) at ./error.jl:42
+ [2] jldopen(::String, ::Bool, ::Bool, ::Bool, ::Bool, ::Bool; mmaparrays::Bool, compatible::Bool, compress::Bool) at /Users/adityasengupta/.julia/packages/JLD/uVJmd/src/JLD.jl:156
+ [3] jldopen(::String, ::String; mmaparrays::Bool, compatible::Bool, compress::Bool) at /Users/adityasengupta/.julia/packages/JLD/uVJmd/src/JLD.jl:234
+ [4] jldopen(::String, ::String) at /Users/adityasengupta/.julia/packages/JLD/uVJmd/src/JLD.jl:234
+ [5] jldopen(::JLD.var"#42#44", ::String, ::Vararg{String,N} where N; kws::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/JLD/uVJmd/src/JLD.jl:244
+ [6] jldopen(::Function, ::String, ::String) at /Users/adityasengupta/.julia/packages/JLD/uVJmd/src/JLD.jl:244
+ [7] load(::FileIO.File{FileIO.DataFormat{:JLD}}) at /Users/adityasengupta/.julia/packages/JLD/uVJmd/src/JLD.jl:1249
+ [8] load(::String; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118
+ [9] load at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118 [inlined]
+ [10] setup_OSD(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:211
+ [11] #setup_OSD_interp#7 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:230 [inlined]
+ [12] setup_OSD_interp at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:230 [inlined]
+ [13] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_m/dr25_binrates_func.jl:502
+ [14] #setup_star_table_dr25#25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_m/dr25_binrates_func.jl:596 [inlined]
+ [15] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_m/dr25_binrates_func.jl:596
+ [16] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_m/abc_setup.jl:122
+ [17] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_m/abc_setup.jl:158
+ [18] top-level scope at ./util.jl:175 [inlined]
+ [19] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_m/abc_run.jl:0
+ [20] include(::String) at ./client.jl:439
+ [21] top-level scope at REPL[4]:1
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_m/abc_run.jl:18
+
+julia> cd("..")
+
+julia> cd("dr25_gaia_fgk")
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+┌ Warning: `CSV.read(input; kw...)` is deprecated in favor of `DataFrame!(CSV.File(input; kw...))`
+└ @ CSV ~/.julia/packages/CSV/OM6FO/src/CSV.jl:40
+# Finished reading in KOI data
+Error encountered while loading "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2".
+
+Fatal error:
+ERROR: LoadError: SystemError: opening file "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2": No such file or directory
+Stacktrace:
+ [1] handle_error(::SystemError, ::FileIO.File{FileIO.DataFormat{:JLD2}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:82
+ [2] handle_exceptions(::Array{Any,1}, ::String) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:77
+ [3] load(::FileIO.Formatted; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:186
+ [4] load(::FileIO.Formatted) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:166
+ [5] load(::String; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118
+ [6] load at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118 [inlined]
+ [7] setup_OSD(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:211
+ [8] #setup_OSD_interp#7 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:230 [inlined]
+ [9] setup_OSD_interp at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:230 [inlined]
+ [10] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:444
+ [11] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:538 [inlined]
+ [12] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:538
+ [13] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [14] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [15] top-level scope at ./util.jl:175 [inlined]
+ [16] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [17] include(::String) at ./client.jl:439
+ [18] top-level scope at REPL[7]:1
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+┌ Warning: `CSV.read(input; kw...)` is deprecated in favor of `DataFrame!(CSV.File(input; kw...))`
+└ @ CSV ~/.julia/packages/CSV/OM6FO/src/CSV.jl:40
+# Finished reading in KOI data
+Error encountered while loading "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2".
+
+Fatal error:
+ERROR: LoadError: SystemError: opening file "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2": No such file or directory
+Stacktrace:
+ [1] handle_error(::SystemError, ::FileIO.File{FileIO.DataFormat{:JLD2}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:82
+ [2] handle_exceptions(::Array{Any,1}, ::String) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:77
+ [3] load(::FileIO.Formatted; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:186
+ [4] load(::FileIO.Formatted) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:166
+ [5] load(::String; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118
+ [6] load at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118 [inlined]
+ [7] setup_OSD(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:211
+ [8] #setup_OSD_interp#7 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:230 [inlined]
+ [9] setup_OSD_interp at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:230 [inlined]
+ [10] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:444
+ [11] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:538 [inlined]
+ [12] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:538
+ [13] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [14] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [15] top-level scope at ./util.jl:175 [inlined]
+ [16] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [17] include(::String) at ./client.jl:439
+ [18] top-level scope at REPL[7]:1
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+┌ Warning: `CSV.read(input; kw...)` is deprecated in favor of `DataFrame!(CSV.File(input; kw...))`
+└ @ CSV ~/.julia/packages/CSV/OM6FO/src/CSV.jl:40
+# Finished reading in KOI data
+Error encountered while loading "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2".
+
+Fatal error:
+ERROR: LoadError: SystemError: opening file "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2": No such file or directory
+Stacktrace:
+ [1] handle_error(::SystemError, ::FileIO.File{FileIO.DataFormat{:JLD2}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:82
+ [2] handle_exceptions(::Array{Any,1}, ::String) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:77
+ [3] load(::FileIO.Formatted; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:186
+ [4] load(::FileIO.Formatted) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:166
+ [5] load(::String; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118
+ [6] load at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118 [inlined]
+ [7] setup_OSD(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:211
+ [8] #setup_OSD_interp#7 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:230 [inlined]
+ [9] setup_OSD_interp at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:230 [inlined]
+ [10] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:444
+ [11] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:538 [inlined]
+ [12] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:538
+ [13] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [14] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [15] top-level scope at ./util.jl:175 [inlined]
+ [16] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [17] include(::String) at ./client.jl:439
+ [18] top-level scope at REPL[7]:1
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+
+julia> exit()
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > cd examples/dr25_gaia_fgk/
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk > ls
+README.md		abc_run.jl		abc_setup.jl		beta_proposal.jl	dr25_binrates_func.jl	invdet_calc.jl		param.in
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk > atom dr25_binrates_func.jl 
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk > atom abc_run.jl
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk > atom abc_run.jl 
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk > julia abc_run.jl
+Setting up simulation...
+hi i'm here now
+# Finished reading in KOI data
+Error encountered while loading "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2".
+
+Fatal error:
+ERROR: LoadError: SystemError: opening file "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2": No such file or directory
+Stacktrace:
+ [1] handle_error(::SystemError, ::FileIO.File{FileIO.DataFormat{:JLD2}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:82
+ [2] handle_exceptions(::Array{Any,1}, ::String) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:77
+ [3] load(::FileIO.Formatted; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:186
+ [4] load(::FileIO.Formatted) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:166
+ [5] load(::String; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118
+ [6] load at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118 [inlined]
+ [7] setup_OSD(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:211
+ [8] #setup_OSD_interp#7 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:230 [inlined]
+ [9] setup_OSD_interp at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:230 [inlined]
+ [10] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:444
+ [11] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:538 [inlined]
+ [12] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:538
+ [13] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [14] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [15] top-level scope at ./util.jl:175 [inlined]
+ [16] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [17] include(::Module, ::String) at ./Base.jl:377
+ [18] exec_options(::Base.JLOptions) at ./client.jl:288
+ [19] _start() at ./client.jl:484
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk > cd ..
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples > cd ..
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > cd src
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/src > ls
+ExoplanetsSysSim.jl		eval_model_macro.jl		limb_darkening.jl		setup.jl			summary_statistics.jl		transit_prob_geometric.jl
+abc_distance.jl			io.jl				orbit.jl			simulation_parameters.jl	target.jl			window_function.jl
+constants.jl			kepler_catalog.jl		planet.jl			star.jl				transit_detection_model.jl
+eval_model.jl			koi_table.jl			planetary_system.jl		stellar_table.jl		transit_observations.jl
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/src > atom window_function.jl 
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/src > git status
+HEAD detached from d945923
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   ../Manifest.toml
+	modified:   ../Project.toml
+	modified:   ../examples/dr25_gaia_fgk/dr25_binrates_func.jl
+	modified:   ../examples/dr25_gaia_m/abc_setup.jl
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	../examples/dr25_gaia_m/Manifest.toml
+	../examples/dr25_gaia_m/Project.toml
+
+no changes added to commit (use "git add" and/or "git commit -a")
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/src > git status
+HEAD detached from d945923
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   ../Manifest.toml
+	modified:   ../Project.toml
+	modified:   ../examples/dr25_gaia_fgk/dr25_binrates_func.jl
+	modified:   ../examples/dr25_gaia_m/abc_setup.jl
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	../examples/dr25_gaia_m/Manifest.toml
+	../examples/dr25_gaia_m/Project.toml
+
+no changes added to commit (use "git add" and/or "git commit -a")
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/src > git checkout master
+M	Manifest.toml
+M	Project.toml
+M	examples/dr25_gaia_fgk/dr25_binrates_func.jl
+M	examples/dr25_gaia_m/abc_setup.jl
+Previous HEAD position was 2e3d6b0 Merge pull request #15 from dch216/master
+Switched to branch 'master'
+Your branch and 'origin/master' have diverged,
+and have 2 and 8 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/src > git pull origin master
+From https://github.com/ExoJulia/ExoplanetsSysSim.jl
+ * branch            master     -> FETCH_HEAD
+Merge made by the 'recursive' strategy.
+ examples/dr25_gaia_m/dr25_binrates_func.jl | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/src > git logline
+*   5da835c - (HEAD -> master) Merge branch 'master' of https://github.com/ExoJulia/ExoplanetsSysSim.jl (20 seconds ago) <Aditya Sengupta>
+|\  
+| *   2e3d6b0 - (origin/master) Merge pull request #15 from dch216/master (20 hours ago) <Eric Ford>
+| |\  
+| | * 1460d28 - Restore generate_num_planets beta function to FGK (20 hours ago) <dch216>
+| | *   24f77ca - Merge remote-tracking branch 'origin/master' (20 hours ago) <dch216>
+| | |\  
+| | | *   8fae00c - Merge remote-tracking branch 'upstream/master' (20 hours ago) <dch216>
+| | | |\  
+| | |_|/  
+| |/| |   
+| | | * 0adce29 - Remove unused generate_num_planets function (20 hours ago) <dch216>
+| | * |   211b7e6 - Merge remote-tracking branch 'upstream/master' (20 hours ago) <dch216>
+| | |\ \  
+| | |/ /  
+| |/| |   
+| | * | 9f21578 - Remove Duplicated Function (20 hours ago) <dch216>
+| | |/  
+| | * 1d88b5b - Restored Accidentally Deleted Function (20 hours ago) <dch216>
+* | | d82fde5 - (fork/master) changed stellar table (6 days ago) <Aditya Sengupta>
+* | | e7af06e - first fork commit (8 days ago) <Aditya Sengupta>
+|/ /  
+* |   d945923 - Merge pull request #13 from dch216/master (2 weeks ago) <Eric Ford>
+|\ \  
+| |/  
+| * 225307e - Completed documentation for transit_observations.jl (2 weeks ago) <dch216>
+| * e01c799 - Add documentation for transit duration/depth (3 weeks ago) <dch216>
+| * 355303a - Fix function call (3 weeks ago) <dch216>
+| * 727f6b8 - More Function Documentation (3 weeks ago) <dch216>
+| * e498dd3 - Added Documentation to Functions (3 weeks ago) <dch216>
+| * f590513 - Update function documentation (4 weeks ago) <dch216>
+| *   00ad8cf - Merge remote-tracking branch 'upstream/master' (5 weeks ago) <dch216>
+| |\  
+| |/  
+|/|   
+* | 9fd7213 - Updated list of publications/citations in README (8 weeks ago) <Eric Ford>
+* |   8db1908 - Merge branch 'master' of github.com:ExoJulia/ExoplanetsSysSim.jl (8 weeks ago) <Eric Ford>
+|\ \  
+| * \   906a78c - Merge pull request #12 from hematthi/master (8 weeks ago) <Eric Ford>
+| |\ \  
+| | * | c39eb05 - Fix deprecated syntax (8 weeks ago) <Matthias Yang He>
+| | * |   33972df - Merge pull request #11 from ExoJulia/master (8 weeks ago) <Matthias Yang He>
+| | |\ \  
+| | |/ /  
+| |/| |   
+| | * |   f226d71 - Merge pull request #10 from ExoJulia/master (8 weeks ago) <Matthias Yang He>
+| | |\ \  
+* | | \ \   f03e101 - Merge branch 'master' of github.com:ExoJulia/ExoplanetsSysSim.jl (8 weeks ago) <Eric Ford>
+|\ \ \ \ \  
+| |/ / / /  
+| * | | |   7fd974c - Merge pull request #11 from dch216/master (8 weeks ago) <Eric Ford>
+| |\ \ \ \  
+| | |_|/ /  
+| |/| | |   
+* | | | | 2563b40 - typed array for SimParam[Pkg.installed] (8 weeks ago) <Eric Ford>
+* | | | | e44f01f - Replaced Pkg.installed() (8 weeks ago) <Eric Ford>
+| | | | * a3eaad3 - Add some function comments to src files (5 weeks ago) <dch216>
+| | | |/  
+| | |/|   
+| | * | dc09773 - Fix Mistake with HasProperty on SimParam (8 weeks ago) <dch216>
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/src > cd ..
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > julia
+               _
+   _       _ _(_)_     |  Documentation: https://docs.julialang.org
+  (_)     | (_) (_)    |
+   _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+  | | | | | | |/ _` |  |
+  | | |_| | | | (_| |  |  Version 1.4.2 (2020-05-23)
+ _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+|__/                   |
+
+julia> using Pkg
+
+julia> Pkg.activate(".")
+ Activating environment at `~/.julia/dev/ExoplanetsSysSim/Project.toml`
+
+julia> Pkg.instantiate()
+
+julia> cd("examples/dr25_gaia_fgk")
+
+julia> include("abc_run.jl")
+[ Info: Precompiling ExoplanetsSysSim [e0ba718c-02ec-11e9-384b-dd2930072415]
+Setting up simulation...
+┌ Warning: `CSV.read(input; kw...)` is deprecated in favor of `DataFrame!(CSV.File(input; kw...))`
+└ @ CSV ~/.julia/packages/CSV/OM6FO/src/CSV.jl:40
+# Finished reading in KOI data
+Error encountered while loading "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2".
+
+Fatal error:
+ERROR: LoadError: SystemError: opening file "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2": No such file or directory
+Stacktrace:
+ [1] handle_error(::SystemError, ::FileIO.File{FileIO.DataFormat{:JLD2}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:82
+ [2] handle_exceptions(::Array{Any,1}, ::String) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:77
+ [3] load(::FileIO.Formatted; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:186
+ [4] load(::FileIO.Formatted) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:166
+ [5] load(::String; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118
+ [6] load at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118 [inlined]
+ [7] setup_OSD(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:211
+ [8] #setup_OSD_interp#7 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:230 [inlined]
+ [9] setup_OSD_interp at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:230 [inlined]
+ [10] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:443
+ [11] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537 [inlined]
+ [12] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537
+ [13] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [14] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [15] top-level scope at ./util.jl:175 [inlined]
+ [16] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [17] include(::String) at ./client.jl:439
+ [18] top-level scope at REPL[5]:1
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+
+julia> exit()
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > cd dr25_gaia_fgk
+-bash: cd: dr25_gaia_fgk: No such file or directory
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > cd examples/dr25_gaia_fgk/
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk > ls
+README.md		abc_run.jl		abc_setup.jl		beta_proposal.jl	dr25_binrates_func.jl	invdet_calc.jl		param.in
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk > julia abc_run.jl
+ERROR: LoadError: LoadError: syntax: missing comma or ) in argument list
+Stacktrace:
+ [1] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:212
+ [2] include(::Module, ::String) at ./Base.jl:377
+ [3] include(::String) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/ExoplanetsSysSim.jl:6
+ [4] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/ExoplanetsSysSim.jl:55
+ [5] include(::Module, ::String) at ./Base.jl:377
+ [6] top-level scope at none:2
+ [7] eval at ./boot.jl:331 [inlined]
+ [8] eval(::Expr) at ./client.jl:449
+ [9] top-level scope at ./none:3
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:212
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/ExoplanetsSysSim.jl:55
+ERROR: LoadError: LoadError: Failed to precompile ExoplanetsSysSim [e0ba718c-02ec-11e9-384b-dd2930072415] to /Users/adityasengupta/.julia/compiled/v1.4/ExoplanetsSysSim/Ie9Ds_eTOyS.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1272
+ [3] _require(::Base.PkgId) at ./loading.jl:1029
+ [4] require(::Base.PkgId) at ./loading.jl:927
+ [5] require(::Module, ::Symbol) at ./loading.jl:922
+ [6] include(::String) at ./client.jl:439
+ [7] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:5
+ [8] include(::Module, ::String) at ./Base.jl:377
+ [9] exec_options(::Base.JLOptions) at ./client.jl:288
+ [10] _start() at ./client.jl:484
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:8
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:5
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk > julia abc_run.jl
+Setting up simulation...
+# Finished reading in KOI data
+/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data
+Error encountered while loading "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2".
+
+Fatal error:
+ERROR: LoadError: SystemError: opening file "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2": No such file or directory
+Stacktrace:
+ [1] handle_error(::SystemError, ::FileIO.File{FileIO.DataFormat{:JLD2}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:82
+ [2] handle_exceptions(::Array{Any,1}, ::String) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:77
+ [3] load(::FileIO.Formatted; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:186
+ [4] load(::FileIO.Formatted) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:166
+ [5] load(::String; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118
+ [6] load at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118 [inlined]
+ [7] setup_OSD(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:212
+ [8] #setup_OSD_interp#7 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:231 [inlined]
+ [9] setup_OSD_interp at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:231 [inlined]
+ [10] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:443
+ [11] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537 [inlined]
+ [12] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537
+ [13] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [14] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [15] top-level scope at ./util.jl:175 [inlined]
+ [16] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [17] include(::Module, ::String) at ./Base.jl:377
+ [18] exec_options(::Base.JLOptions) at ./client.jl:288
+ [19] _start() at ./client.jl:484
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk > cd ..
+adityasengupta ~/.julia/dev/ExoplanetsSysSim/examples > cd ..
+adityasengupta ~/.julia/dev/ExoplanetsSysSim > julia
+               _
+   _       _ _(_)_     |  Documentation: https://docs.julialang.org
+  (_)     | (_) (_)    |
+   _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+  | | | | | | |/ _` |  |
+  | | |_| | | | (_| |  |  Version 1.4.2 (2020-05-23)
+ _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+|__/                   |
+
+julia> using Pkg
+
+julia> using Revise
+
+julia> include("examples/dr25_gaia_fgk/abc_run.jl")
+[ Info: Precompiling ExoplanetsSysSim [e0ba718c-02ec-11e9-384b-dd2930072415]
+Setting up simulation...
+ERROR: LoadError: could not open file /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/param.in
+Stacktrace:
+ [1] include(::Module, ::String) at ./Base.jl:377
+ [2] include(::String) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:5
+ [3] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+ [4] eval at ./boot.jl:331 [inlined]
+ [5] set_test_param(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:58
+ [6] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:105
+ [7] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [8] top-level scope at ./util.jl:175 [inlined]
+ [9] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [10] include(::String) at ./client.jl:439
+ [11] top-level scope at REPL[3]:1
+ [12] eval(::Module, ::Any) at ./boot.jl:331
+ [13] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [14] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [15] top-level scope at REPL[2]:0
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+
+julia> cd("examples/dr25_gaia_fgk")
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+# Finished reading in KOI data
+inputs\dr25fgk_relaxcut_osds.jld2
+Error encountered while loading "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2".
+
+Fatal error:
+ERROR: LoadError: SystemError: opening file "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2": No such file or directory
+Stacktrace:
+ [1] handle_error(::SystemError, ::FileIO.File{FileIO.DataFormat{:JLD2}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:82
+ [2] handle_exceptions(::Array{Any,1}, ::String) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:77
+ [3] load(::FileIO.Formatted; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:186
+ [4] load(::FileIO.Formatted) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:166
+ [5] load(::String; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118
+ [6] load at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118 [inlined]
+ [7] setup_OSD(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:212
+ [8] #setup_OSD_interp#7 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:231 [inlined]
+ [9] setup_OSD_interp at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:231 [inlined]
+ [10] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:443
+ [11] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537 [inlined]
+ [12] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537
+ [13] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [14] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [15] top-level scope at ./util.jl:175 [inlined]
+ [16] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [17] include(::String) at ./client.jl:439
+ [18] top-level scope at REPL[5]:1
+ [19] eval(::Module, ::Any) at ./boot.jl:331
+ [20] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [21] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [22] top-level scope at REPL[2]:0
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+# Finished reading in KOI data
+Error encountered while loading "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2".
+
+Fatal error:
+ERROR: LoadError: SystemError: opening file "/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/../data/inputs\\dr25fgk_relaxcut_osds.jld2": No such file or directory
+Stacktrace:
+ [1] handle_error(::SystemError, ::FileIO.File{FileIO.DataFormat{:JLD2}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:82
+ [2] handle_exceptions(::Array{Any,1}, ::String) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/error_handling.jl:77
+ [3] load(::FileIO.Formatted; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:186
+ [4] load(::FileIO.Formatted) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:166
+ [5] load(::String; options::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118
+ [6] load at /Users/adityasengupta/.julia/packages/FileIO/ZknoK/src/loadsave.jl:118 [inlined]
+ [7] setup_OSD(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:212
+ [8] #setup_OSD_interp#7 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:231 [inlined]
+ [9] setup_OSD_interp at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/src/window_function.jl:231 [inlined]
+ [10] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:443
+ [11] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:538 [inlined]
+ [12] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:538
+ [13] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [14] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [15] top-level scope at ./util.jl:175 [inlined]
+ [16] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [17] include(::String) at ./client.jl:439
+ [18] top-level scope at REPL[5]:1
+ [19] eval(::Module, ::Any) at ./boot.jl:331
+ [20] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [21] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [22] top-level scope at REPL[2]:0
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+# Finished reading in KOI data
+ERROR: LoadError: # Failed to read stellar catalog >/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/data/q1q17_dr25_gaia_fgk.jld2< in jld2 format.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:472
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[5]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+caused by [exception 1]
+KeyError: key "stellar_catalog" not found
+Stacktrace:
+ [1] getindex(::Dict{String,Any}, ::String) at ./dict.jl:477
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:467
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[5]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+# Finished reading in KOI data
+ERROR: LoadError: # Failed to read stellar catalog >/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/data/q1q17_dr25_gaia_fgk.jld2< in jld2 format.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:472
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[5]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+caused by [exception 1]
+KeyError: key "q1_q17" not found
+Stacktrace:
+ [1] getindex(::Dict{String,Any}, ::String) at ./dict.jl:477
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:467
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:537
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[5]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+# Finished reading in KOI data
+hi
+ERROR: LoadError: # Failed to read stellar catalog >/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/data/q1q17_dr25_gaia_fgk.jld2< in jld2 format.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:474
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[5]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+caused by [exception 1]
+MethodError: no method matching keys(::DataFrames.DataFrame)
+Closest candidates are:
+  keys(::Core.SimpleVector) at essentials.jl:605
+  keys(::Cmd) at process.jl:639
+  keys(::LibGit2.GitTree) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/git.jl:52
+  ...
+Stacktrace:
+ [1] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:468
+ [2] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [3] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [4] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539 [inlined]
+ [5] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539
+ [6] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [7] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [8] top-level scope at ./util.jl:175 [inlined]
+ [9] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [10] include(::String) at ./client.jl:439
+ [11] top-level scope at REPL[5]:1
+ [12] eval(::Module, ::Any) at ./boot.jl:331
+ [13] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [14] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [15] top-level scope at REPL[2]:0
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+# Finished reading in KOI data
+hi
+Symbol[]
+ERROR: LoadError: # Failed to read stellar catalog >/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/data/q1q17_dr25_gaia_fgk.jld2< in jld2 format.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:474
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[5]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+caused by [exception 1]
+KeyError: key "q1_q17" not found
+Stacktrace:
+ [1] getindex(::Dict{String,Any}, ::String) at ./dict.jl:477
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:469
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[5]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+
+julia> cd("examples/dr25_gaia_fgk")
+ERROR: IOError: chdir examples/dr25_gaia_fgk: no such file or directory (ENOENT)
+Stacktrace:
+ [1] uv_error at ./libuv.jl:97 [inlined]
+ [2] cd(::String) at ./file.jl:84
+ [3] top-level scope at REPL[6]:1
+ [4] eval(::Module, ::Any) at ./boot.jl:331
+ [5] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [6] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [7] top-level scope at REPL[2]:0
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+# Finished reading in KOI data
+hi
+Symbol[]
+ERROR: LoadError: # Failed to read stellar catalog >/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/data/q1q17_dr25_gaia_fgk.jld2< in jld2 format.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:474
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[7]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+caused by [exception 1]
+KeyError: key "q1_q17" not found
+Stacktrace:
+ [1] getindex(::Dict{String,Any}, ::String) at ./dict.jl:477
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:469
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[7]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+# Finished reading in KOI data
+hi
+DataFrames.DataFrame
+ERROR: LoadError: # Failed to read stellar catalog >/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/data/q1q17_dr25_gaia_fgk.jld2< in jld2 format.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:474
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[7]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+caused by [exception 1]
+KeyError: key "q1_q17" not found
+Stacktrace:
+ [1] getindex(::Dict{String,Any}, ::String) at ./dict.jl:477
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:469
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[7]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+# Finished reading in KOI data
+hi
+Dict{String,Any}
+ERROR: LoadError: # Failed to read stellar catalog >/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/data/q1q17_dr25_gaia_fgk.jld2< in jld2 format.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:474
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[7]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+caused by [exception 1]
+KeyError: key "q1_q17" not found
+Stacktrace:
+ [1] getindex(::Dict{String,Any}, ::String) at ./dict.jl:477
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:469
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:539
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[7]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+# Finished reading in KOI data
+hi
+Dict{String,Any}
+["q1q17"]
+ERROR: LoadError: # Failed to read stellar catalog >/Users/adityasengupta/.julia/dev/ExoplanetsSysSim/data/q1q17_dr25_gaia_fgk.jld2< in jld2 format.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:475
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:540 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:540
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[7]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+in expression starting at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:18
+caused by [exception 1]
+KeyError: key "q1_q17" not found
+Stacktrace:
+ [1] getindex(::Dict{String,Any}, ::String) at ./dict.jl:477
+ [2] setup_dr25(::String; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:470
+ [3] setup_dr25 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:462 [inlined]
+ [4] setup_dr25(::SimParam; force_reread::Bool) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:450
+ [5] #setup_star_table_dr25#27 at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:540 [inlined]
+ [6] setup_star_table_dr25(::SimParam) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/dr25_binrates_func.jl:540
+ [7] setup(::String, ::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:122
+ [8] setup_abc(::Int64; prior_choice::String, bin_size_factor::Float64) at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_setup.jl:158
+ [9] top-level scope at ./util.jl:175 [inlined]
+ [10] top-level scope at /Users/adityasengupta/.julia/dev/ExoplanetsSysSim/examples/dr25_gaia_fgk/abc_run.jl:0
+ [11] include(::String) at ./client.jl:439
+ [12] top-level scope at REPL[7]:1
+ [13] eval(::Module, ::Any) at ./boot.jl:331
+ [14] eval_user_input(::Any, ::REPL.REPLBackend) at /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.4/REPL/src/REPL.jl:86
+ [15] run_backend(::REPL.REPLBackend) at /Users/adityasengupta/.julia/packages/Revise/BqeJF/src/Revise.jl:1184
+ [16] top-level scope at REPL[2]:0
+
+julia> include("abc_run.jl")
+WARNING: replacing module EvalSysSimModel.
+WARNING: replacing module SysSimABC.
+Setting up simulation...
+# Finished reading in KOI data
+# Removing stars observed <5 quarters.
+# Finished reading in stellar data
+┌ Warning: inner joining data frames using join is deprecated, use `innerjoin(df1, df2, on=kepid, makeunique=false, validate=(false, false))` instead
+│   caller = ip:0x0
+└ @ Core :-1
+# Finished setting up true catalog
+ 84.449912 seconds (8.03 M allocations: 7.772 GiB, 22.52% gc time)
+
+Running simulation...
+# run_abc: SimParam(Dict{String,Any}("calc_target_obs_single_obs" => ExoplanetsSysSim.calc_target_obs_single_obs,"p_lim_full" => [0.5, 1.0, 2.0, 4.0, 8.0, 16.0, 32.0, 64.0, 128.0, 256.0, 500.0],"generate_planetary_system" => ExoplanetsSysSim.generate_planetary_system_uncorrelated_incl,"stellar_catalog" => "q1q17_dr25_gaia_fgk.jld2","num_kepler_targets" => 79928,"sigma_hk" => 0.03,"koi_catalog" => "q1_q17_dr25_koi.csv","bin_size_factor" => 2.0,"Pkg.installed" => NamedTuple{(:name, :version),Tuple{String,VersionNumber}}[(name = "JLD2", version = v"0.1.13"), (name = "Distributions", version = v"0.23.4"), (name = "Feather", version = v"0.5.6"), (name = "CORBITS", version = v"1.0.1"), (name = "CSV", version = v"0.6.2"), (name = "FileIO", version = v"1.3.0"), (name = "SpecialFunctions", version = v"0.10.3"), (name = "ExoplanetsSysSim", version = v"1.0.1"), (name = "Example", version = v"0.5.3"), (name = "DataFrames", version = v"0.21.2"), (name = "StatsBase", version = v"0.33.0"), (name = "JLD", version = v"0.9.2"), (name = "IJulia", version = v"1.21.2"), (name = "StatsFuns", version = v"0.9.5"), (name = "ApproximateBayesianComputing", version = v"0.0.3"), (name = "Revise", version = v"2.7.3")],"num_targets_sim_pass_one" => 1000,"osd_file" => "inputs/dr25fgk_relaxcut_osds.jld2","version_julia" => "1.4.2","p_lim_arr" => [237.0, 500.0],"star_table_setup" => Main.EvalSysSimModel.setup_star_table_dr25,"generate_kepler_target" => ExoplanetsSysSim.generate_kepler_target_from_table,"generate_period_and_sizes" => Main.EvalSysSimModel.generate_period_and_sizes_binrates_uniform,"read_OSD_function" => true,"vetting_efficiency" => ExoplanetsSysSim.vetting_efficiency_none,"r_lim_arr" => [0.00458420780266222, 0.00687631170399333, 0.00916841560532444, 0.011460519506655551, 0.01375262340798666, 0.01604472730931777],"obs_par" => [0.01; 0.01; 0.01; 0.01; 0.01],"generate_num_planets" => Main.EvalSysSimModel.generate_num_planets_binrates_uniform,"read_stellar_catalog" => true,"calc_target_obs_sky_ave" => ExoplanetsSysSim.calc_target_obs_sky_ave,"max_tranets_in_sys" => 7,"read_window_function" => true,"sigma_incl" => 2.0,"transit_noise_model" => ExoplanetsSysSim.transit_noise_model_diagonal,"generate_star" => ExoplanetsSysSim.generate_star_dumb,"generate_planet_mass_from_radius" => ExoplanetsSysSim.generate_planet_mass_from_radius_powerlaw,"mr_power_index" => 2.0,"mr_const" => 1.0,"r_lim_full" => [0.00229210390133111, 0.00458420780266222, 0.00687631170399333, 0.00916841560532444, 0.011460519506655551, 0.01375262340798666, 0.01604472730931777, 0.01833683121064888, 0.022921039013311103, 0.02750524681597332, 0.03667366242129776, 0.05501049363194664, 0.07334732484259553, 0.11002098726389328, 0.14669464968519105],"generate_e_omega" => ExoplanetsSysSim.generate_e_omega_rayleigh), Dict{String,Bool}("calc_target_obs_single_obs" => 0,"p_lim_full" => 0,"generate_planetary_system" => 0,"stellar_catalog" => 0,"num_kepler_targets" => 0,"sigma_hk" => 0,"koi_catalog" => 0,"bin_size_factor" => 0,"Pkg.installed" => 0,"num_targets_sim_pass_one" => 0,"osd_file" => 0,"version_julia" => 0,"p_lim_arr" => 0,"star_table_setup" => 0,"generate_kepler_target" => 0,"generate_period_and_sizes" => 0,"read_OSD_function" => 0,"vetting_efficiency" => 0,"r_lim_arr" => 0,"obs_par" => 1,"generate_num_planets" => 0,"read_stellar_catalog" => 0,"calc_target_obs_sky_ave" => 0,"max_tranets_in_sys" => 0,"read_window_function" => 0,"sigma_incl" => 0,"transit_noise_model" => 0,"generate_star" => 0,"generate_planet_mass_from_radius" => 0,"mr_power_index" => 0,"mr_const" => 0,"r_lim_full" => 0,"generate_e_omega" => 0))
+pop_init: ApproximateBayesianComputing.abc_population_type([0.6033112615011736 1.1258867411293931 0.7272322631347903 0.44184130372012004 0.7420423943329172 0.15988220732344277 0.1590619813613273 0.8499964252888181 0.1869524887994336 0.44436487182272266 0.22786818117551957 1.1318359333926868 0.5162061822264027 1.2343879989479727 1.0232221290742534 0.2239297829305802 0.3536538391072568 0.6141745014744718 0.8596875763696697 0.6499019920359194 0.2680776962448116 1.0014403870922708 0.459294764606424 0.5504619704133041 0.8301031894898854 0.08637835032580994 0.30690723505034545 0.872188322882565 1.034354539080825 0.2976842277932199 0.18538265278270666 0.1460100337392018 0.18741735879052415 0.13348058521590625 0.2953433163725379 0.17177443144625146 0.07244720420600373 0.4493626605726906 1.2173349909391276 1.1817195670424603 0.3410521381072478 1.0798758361234433 0.6891232436482729 0.7436870959601684 0.4911639437344212 0.3198034912276243 0.5437830543443878 0.42265415552735425 0.21618391497123593 1.1462865204429165 0.9501122490890958 1.2301754803086353 1.1988973142947064 0.5506109290888769 0.059191832973297935 0.2626718536799388 0.46886413764473794 0.3253065524829256 0.25080632538420333 0.8452396975678662 0.9805465953103443 0.6715824594032127 0.43818581000943035 0.07231049294369732 1.1413452188779358 0.8147070625889 0.23999400794872305 0.09022882627510273 0.711716730942235 0.10853828250266413 0.04094214191978089 0.8863036383846897 0.18475402150623976 1.0817468726920543 0.6544962105465044 0.5929406613622193 0.49887086434840494 0.2552838434935282 0.5370329360327729 0.6474516862837932 0.880234694254004 0.7793912122760464 0.7221836612453024 1.0619601479154213 0.9207555112253296 0.2588338148253955 0.9496666172939388 0.15752012443114125 0.3044512146686752 0.7740196667691218 1.046269343581638 0.5647689648046883 0.5806039702281127 0.2982718323460206 0.44501896628087834 0.3445538618604468 0.20265329356867426 0.09410034993831527 0.5486139068876267 0.06752524214315982; 0.6560706697567613 0.37558163998136473 0.3584452381203683 0.09386396520897565 0.7910600981483684 0.21318994454376244 0.21556201896430924 0.5985486660639961 0.0586500261240582 0.8590203016870055 0.5323029281981937 0.36417244446305375 0.6248288469030758 0.4014885746209912 0.46554156137770303 0.31348678956332815 0.7991426651626814 0.8293823294987965 0.05777345828414938 0.25657713551278133 0.46882002873772705 0.25389956901482263 0.4244119573649441 0.69568233204816 0.05328771374432619 0.5748341590326875 0.4985124451406135 0.4502579331489666 0.08601706189926486 0.6716812188137065 0.4492013418848767 0.2885213394981621 0.15788929439483568 0.7019128040539061 0.18679200123443607 0.7329804029208925 0.26773448280693346 0.3682358515406584 0.45370005765388327 0.5512349854622394 0.5867828001277 0.34091523156184583 0.8466216395689352 0.42505141501403354 0.6486172464981677 0.32800198399956526 0.10650454058562597 0.12525942454350023 0.16867210572174454 0.5284719472681768 0.45790268275712953 0.7075391453609123 0.560803700147762 0.0818216777951012 0.845610438655591 0.7857861699820357 0.13084868521462129 0.5660745091731991 0.6635017826703399 0.2717486640887273 0.0917750662253393 0.47176358994877565 0.3444000777887391 0.02969540002931357 0.3507857840771258 0.3275899818928074 0.12923372944524353 0.5520711413469367 0.8717364727273775 0.15987681116936048 0.8074935315492264 0.16391864869844425 0.024935478281101885 0.07396301486295556 0.2114156551428916 0.45219299244403005 0.3699419323732054 0.539061684327517 0.6174470031728702 0.5218005541404692 0.5847089180772038 0.19308023772740499 0.509606893640106 0.49383654599914256 0.30715139027919286 0.8517570752811182 0.2299379403740925 0.8752197468584778 0.8063213464904356 0.10912340044861904 0.5623884823173309 0.1321016871889526 0.3184494621164777 0.42419298754346335 0.04394123552514248 0.0904656623192313 0.8520997796910056 0.634844993635292 0.028971148129620476 0.8770865766284608; 0.12414913116887707 0.4495714435109195 0.6640932163513273 0.1532928364172114 0.24646468578080422 0.48772519093196387 0.4068198812412064 0.45867716675904524 0.4225944149651899 0.6133727346999888 0.6510986115266795 0.2140271193521429 0.3589970768744215 0.44078176641608613 0.6842946150721393 0.4454615192523887 0.36378630338151347 0.4860045559671765 0.6037548330040009 0.07420461644165637 0.4278345454277836 0.25859468781768774 0.4506675578309903 0.24583327401076963 0.2186591263832303 0.36574170476673 0.4524932817384552 0.044772033793523625 0.04234948944490035 0.3945332653701863 0.5000415188502829 0.5615666281216353 0.6929369747837932 0.6720811407599718 0.5181104484560177 0.6248692794697663 0.08410280996602637 0.3347092773708536 0.1612219371770827 0.1598695515508518 0.32666445938607713 0.1021488899967707 0.3742833969841599 0.28331352115453906 0.4984355859187364 0.6842889622483097 0.5474458211242478 0.5351007762879657 0.5436837144155142 0.31269464110395506 0.6760562204516755 0.05836130343697756 0.13908845735418085 0.5105739159054168 0.10062310014804596 0.44790169812559766 0.6780370698124428 0.15053086401841906 0.3731608958050322 0.18066807206530539 0.5276560723761723 0.6833690681071395 0.19615759120395368 0.4994731812866813 0.04399739567815619 0.03780458389552855 0.006520891152719727 0.5060138856481744 0.3226385848184018 0.3571624032205339 0.04072374745327859 0.08043082304806365 0.4190753461480375 0.1280034866729233 0.5204788774478685 0.5602180274046838 0.564210673755271 0.3652823336717889 0.015082488842309144 0.06263757769735816 0.01589293825958745 0.6755643785006188 0.2685939899110628 0.2522458965210656 0.0770833279337319 0.5644829990461941 0.33674651247769827 0.028811899551711855 0.23015063721917214 0.2504646547394872 0.1287927855450368 0.33127226686542327 0.4802979045256514 0.09115952505150861 0.6640280522283261 0.35804279314889287 0.2391130390614321 0.12021738888579886 0.6087699733229627 0.31988764452998225; 0.446323584035566 0.2256378369054881 0.10937301916426109 0.4013758227183347 0.12397900624428716 0.11234612084052463 0.5334507177773246 0.24124030460944118 0.30432932275922797 0.44721095773828295 0.47303633113352456 0.3263435536729137 0.2889067217839651 0.4847820793611223 0.0008985955033710805 0.29529699921959496 0.5478474083533951 0.17303701328428742 0.5652549646068613 0.1716037517279502 0.41532782486349057 0.09943647126789378 0.06972788811081135 0.44571025275068243 0.21713312557396744 0.3345590112713968 0.2586918530001811 0.504991723547391 0.4483498762649936 0.27234421219295635 0.2993024148846021 0.29288934183510335 0.4571421627839842 0.19395078077714742 0.1736943730490518 0.19808864416965322 0.1829530335209923 0.5481229642730734 0.2868509317753285 0.4973477552319289 0.31990240364302996 0.41728151464504454 0.0909996692877133 0.1516690326603817 0.5173221537709001 0.25498140896234156 0.169141382350286 0.2094038154366481 0.19009761352475057 0.08117942115199715 0.14448270191003237 0.32814092384715626 0.33688684490365367 0.4716412945798104 0.39895580682115744 0.32517222917575433 0.05583779637454188 0.35369011147209534 0.4811671230357708 0.25490833869580987 0.23526238721737816 0.3114114084180523 0.05302587586158975 0.060370623429898684 0.18106292812681238 0.5517130989516782 0.06478574201112326 0.5096925807169379 0.380856849014588 0.3446130066943262 0.3040121497329492 0.5446067188916511 0.2758626561490949 0.3674966177209176 0.3156973092685014 0.37650049519061707 0.5545680234811955 0.5534794752989473 0.14508068858782927 0.3320946815748503 0.5125612431633159 0.4896608913839428 0.07979756374542563 0.5400670129569305 0.5470133022116678 0.012098858768647571 0.41882864468018377 0.420801127258319 0.22061833586979712 0.3657024186383483 0.06971923266695762 0.5165769136918977 0.1827511503795154 0.08460892871041197 0.06565827276234606 0.49357358199678486 0.1530271227358598 0.009013198896480256 0.22287433564445822 0.13350647941068472; 0.4484120948581606 0.38708334448693293 0.28998071570581674 0.135018818608946 0.08695455254161022 0.4673684375275584 0.1446695875561423 0.34113628990422357 0.07185527864133025 0.17770951779920818 0.25159917665873677 0.3250277044756682 0.4186509708248536 0.06943115040481677 0.41855192512977174 0.33791763682134046 0.44496334017587963 0.1527852187554022 0.2354942966370831 0.3151448679172585 0.25698241753387946 0.3475806841131152 0.10043490339279197 0.3760322367689116 0.32078182282376455 0.4051923085745028 0.36985829177654783 0.22430923192488594 0.14617692850516129 0.4353963666495557 0.08793419958993266 0.32131472830366403 0.04033159783695135 0.0939783311495304 0.09654153473220364 0.4357767438850219 0.25508881883904677 0.04412357153413605 0.22359839831972392 0.3751797904413751 0.2171700976397352 0.0721070570875268 0.4334489973664012 0.44034199198147955 0.13515628091761053 0.4765361096222227 0.09208021213742344 0.31959349888957317 0.09525270890021675 0.4177446349435886 0.13852214583425132 0.19149633003221245 0.0021563886802738043 0.32745630531924613 0.27610188231912464 0.31579913201189713 0.43235627004449906 0.12074884304724472 0.0573028862918829 0.32555956548670983 0.3760231569643684 0.271820459647417 0.09329329860719693 0.4209167187077013 0.1927789227893716 0.1767683108142055 0.24110087823042925 0.4670972675274697 0.14247590603724614 0.17156495605073196 0.386175668893331 0.3322447954506178 0.27896932182164896 0.24120139470658758 0.09903385254567981 0.13904406458983568 0.2950839363206603 0.0477677825491732 0.25823368894907905 0.1392097398502607 0.003372766423770701 0.27490956865241006 0.10502664244161 0.2066986080037862 0.2859894855035783 0.40866467968643794 0.005040445612656957 0.05247041917678508 0.2875014056153718 0.40634580058383957 0.4518794203504759 0.13105690947764723 0.006688425011724293 0.2604087082159233 0.277454260320847 0.3852684774038415 0.07037408384396872 0.2039371389439958 0.4679952234441419 0.4239224418560817], [0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01], [0.02126254053438766, 0.012307775404590939, 0.01027370276412425, 0.00612648189439601, 0.009962303203392493, 0.01803048242993967, 0.014438354643408074, 0.01978346595334384, 0.013442676937879396, 0.01449003867659714, 0.011395225509992505, 0.011993575378876346, 0.01856750172458807, 0.013413411415283872, 0.004905111175349629, 0.01605658185541346, 0.014720671000999793, 0.009876285444368967, 0.022104627695502976, 0.014932351480907411, 0.011948285866308818, 0.0162602890144977, 0.006339159473454063, 0.016636430857095916, 0.011993575378876346, 0.015559900591637244, 0.017924983867516463, 0.013569264960037679, 0.01000450303977992, 0.02604663229684623, 0.019275531697432763, 0.017924983867516463, 0.01764103411543103, 0.008253293932134777, 0.01682205593128717, 0.013747929128241588, 0.011158573204760484, 0.019150755403549578, 0.01320073383622582, 0.011108704938240115, 0.01993460300079737, 0.006425177232477588, 0.021567608400854574, 0.020921645359918653, 0.018894056353227023, 0.015676523118504364, 0.015903480192383128, 0.017235186832636123, 0.013538187709167057, 0.01197936311717944, 0.015356930382312117, 0.009088296106250641, 0.017685629854574524, 0.01628339799146916, 0.01197936311717944, 0.0244680708006592, 0.015613629432634675, 0.013499429174307399, 0.023375140350797376, 0.009311326829634928, 0.019154712804445723, 0.012895481645863627, 0.0011790419903049683, 0.0162602890144977, 0.008363556782201128, 0.015516489088094344, 0.0077209115236928335, 0.022003491171061276, 0.009876285444368967, 0.015132556533668746, 0.007305523884700979, 0.01624633998242894, 0.008363556782201128, 0.01783935407696312, 0.012076503461719769, 0.021215812911561646, 0.0169798029087943, 0.016432607616778533, 0.006392973990102546, 0.00707425194182981, 0.019969733587693436, 0.019822726989448536, 0.006425177232477588, 0.013499429174307399, 0.010776452378609983, 0.009325932716690452, 0.02540201359182877, 0.020615880952524635, 0.012814365291295302, 0.013467225931932355, 0.010674271598614404, 0.01595273987820348, 0.019150755403549578, 0.014493356459024767, 0.009718419481109833, 0.021399728549772425, 0.016737859807140723, 0.0011790419903049683, 0.019593707826328365, 0.010611377912744715], 0.02604663229684623, [1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546, 1.5509798334273546], ApproximateBayesianComputing.abc_log_type([[0.6033112615011736, 0.6560706697567613, 0.12414913116887707, 0.446323584035566, 0.4484120948581606], [1.1258867411293931, 0.37558163998136473, 0.4495714435109195, 0.2256378369054881, 0.38708334448693293], [0.7272322631347903, 0.3584452381203683, 0.6640932163513273, 0.10937301916426109, 0.28998071570581674], [0.44184130372012004, 0.09386396520897565, 0.1532928364172114, 0.4013758227183347, 0.135018818608946], [0.7420423943329172, 0.7910600981483684, 0.24646468578080422, 0.12397900624428716, 0.08695455254161022], [0.15988220732344277, 0.21318994454376244, 0.48772519093196387, 0.11234612084052463, 0.4673684375275584], [0.1590619813613273, 0.21556201896430924, 0.4068198812412064, 0.5334507177773246, 0.1446695875561423], [0.8499964252888181, 0.5985486660639961, 0.45867716675904524, 0.24124030460944118, 0.34113628990422357], [0.1869524887994336, 0.0586500261240582, 0.4225944149651899, 0.30432932275922797, 0.07185527864133025], [0.44436487182272266, 0.8590203016870055, 0.6133727346999888, 0.44721095773828295, 0.17770951779920818], [0.22786818117551957, 0.5323029281981937, 0.6510986115266795, 0.47303633113352456, 0.25159917665873677], [1.1318359333926868, 0.36417244446305375, 0.2140271193521429, 0.3263435536729137, 0.3250277044756682], [0.5162061822264027, 0.6248288469030758, 0.3589970768744215, 0.2889067217839651, 0.4186509708248536], [1.2343879989479727, 0.4014885746209912, 0.44078176641608613, 0.4847820793611223, 0.06943115040481677], [1.0232221290742534, 0.46554156137770303, 0.6842946150721393, 0.0008985955033710805, 0.41855192512977174], [0.2239297829305802, 0.31348678956332815, 0.4454615192523887, 0.29529699921959496, 0.33791763682134046], [0.3536538391072568, 0.7991426651626814, 0.36378630338151347, 0.5478474083533951, 0.44496334017587963], [0.6141745014744718, 0.8293823294987965, 0.4860045559671765, 0.17303701328428742, 0.1527852187554022], [0.8596875763696697, 0.05777345828414938, 0.6037548330040009, 0.5652549646068613, 0.2354942966370831], [0.6499019920359194, 0.25657713551278133, 0.07420461644165637, 0.1716037517279502, 0.3151448679172585], [0.2680776962448116, 0.46882002873772705, 0.4278345454277836, 0.41532782486349057, 0.25698241753387946], [1.0014403870922708, 0.25389956901482263, 0.25859468781768774, 0.09943647126789378, 0.3475806841131152], [0.459294764606424, 0.4244119573649441, 0.4506675578309903, 0.06972788811081135, 0.10043490339279197], [0.5504619704133041, 0.69568233204816, 0.24583327401076963, 0.44571025275068243, 0.3760322367689116], [0.8301031894898854, 0.05328771374432619, 0.2186591263832303, 0.21713312557396744, 0.32078182282376455], [0.08637835032580994, 0.5748341590326875, 0.36574170476673, 0.3345590112713968, 0.4051923085745028], [0.30690723505034545, 0.4985124451406135, 0.4524932817384552, 0.2586918530001811, 0.36985829177654783], [0.872188322882565, 0.4502579331489666, 0.044772033793523625, 0.504991723547391, 0.22430923192488594], [1.034354539080825, 0.08601706189926486, 0.04234948944490035, 0.4483498762649936, 0.14617692850516129], [0.2976842277932199, 0.6716812188137065, 0.3945332653701863, 0.27234421219295635, 0.4353963666495557], [0.18538265278270666, 0.4492013418848767, 0.5000415188502829, 0.2993024148846021, 0.08793419958993266], [0.1460100337392018, 0.2885213394981621, 0.5615666281216353, 0.29288934183510335, 0.32131472830366403], [0.18741735879052415, 0.15788929439483568, 0.6929369747837932, 0.4571421627839842, 0.04033159783695135], [0.13348058521590625, 0.7019128040539061, 0.6720811407599718, 0.19395078077714742, 0.0939783311495304], [0.2953433163725379, 0.18679200123443607, 0.5181104484560177, 0.1736943730490518, 0.09654153473220364], [0.17177443144625146, 0.7329804029208925, 0.6248692794697663, 0.19808864416965322, 0.4357767438850219], [0.07244720420600373, 0.26773448280693346, 0.08410280996602637, 0.1829530335209923, 0.25508881883904677], [0.4493626605726906, 0.3682358515406584, 0.3347092773708536, 0.5481229642730734, 0.04412357153413605], [1.2173349909391276, 0.45370005765388327, 0.1612219371770827, 0.2868509317753285, 0.22359839831972392], [1.1817195670424603, 0.5512349854622394, 0.1598695515508518, 0.4973477552319289, 0.3751797904413751], [0.3410521381072478, 0.5867828001277, 0.32666445938607713, 0.31990240364302996, 0.2171700976397352], [1.0798758361234433, 0.34091523156184583, 0.1021488899967707, 0.41728151464504454, 0.0721070570875268], [0.6891232436482729, 0.8466216395689352, 0.3742833969841599, 0.0909996692877133, 0.4334489973664012], [0.7436870959601684, 0.42505141501403354, 0.28331352115453906, 0.1516690326603817, 0.44034199198147955], [0.4911639437344212, 0.6486172464981677, 0.4984355859187364, 0.5173221537709001, 0.13515628091761053], [0.3198034912276243, 0.32800198399956526, 0.6842889622483097, 0.25498140896234156, 0.4765361096222227], [0.5437830543443878, 0.10650454058562597, 0.5474458211242478, 0.169141382350286, 0.09208021213742344], [0.42265415552735425, 0.12525942454350023, 0.5351007762879657, 0.2094038154366481, 0.31959349888957317], [0.21618391497123593, 0.16867210572174454, 0.5436837144155142, 0.19009761352475057, 0.09525270890021675], [1.1462865204429165, 0.5284719472681768, 0.31269464110395506, 0.08117942115199715, 0.4177446349435886], [0.9501122490890958, 0.45790268275712953, 0.6760562204516755, 0.14448270191003237, 0.13852214583425132], [1.2301754803086353, 0.7075391453609123, 0.05836130343697756, 0.32814092384715626, 0.19149633003221245], [1.1988973142947064, 0.560803700147762, 0.13908845735418085, 0.33688684490365367, 0.0021563886802738043], [0.5506109290888769, 0.0818216777951012, 0.5105739159054168, 0.4716412945798104, 0.32745630531924613], [0.059191832973297935, 0.845610438655591, 0.10062310014804596, 0.39895580682115744, 0.27610188231912464], [0.2626718536799388, 0.7857861699820357, 0.44790169812559766, 0.32517222917575433, 0.31579913201189713], [0.46886413764473794, 0.13084868521462129, 0.6780370698124428, 0.05583779637454188, 0.43235627004449906], [0.3253065524829256, 0.5660745091731991, 0.15053086401841906, 0.35369011147209534, 0.12074884304724472], [0.25080632538420333, 0.6635017826703399, 0.3731608958050322, 0.4811671230357708, 0.0573028862918829], [0.8452396975678662, 0.2717486640887273, 0.18066807206530539, 0.25490833869580987, 0.32555956548670983], [0.9805465953103443, 0.0917750662253393, 0.5276560723761723, 0.23526238721737816, 0.3760231569643684], [0.6715824594032127, 0.47176358994877565, 0.6833690681071395, 0.3114114084180523, 0.271820459647417], [0.43818581000943035, 0.3444000777887391, 0.19615759120395368, 0.05302587586158975, 0.09329329860719693], [0.07231049294369732, 0.02969540002931357, 0.4994731812866813, 0.060370623429898684, 0.4209167187077013], [1.1413452188779358, 0.3507857840771258, 0.04399739567815619, 0.18106292812681238, 0.1927789227893716], [0.8147070625889, 0.3275899818928074, 0.03780458389552855, 0.5517130989516782, 0.1767683108142055], [0.23999400794872305, 0.12923372944524353, 0.006520891152719727, 0.06478574201112326, 0.24110087823042925], [0.09022882627510273, 0.5520711413469367, 0.5060138856481744, 0.5096925807169379, 0.4670972675274697], [0.711716730942235, 0.8717364727273775, 0.3226385848184018, 0.380856849014588, 0.14247590603724614], [0.10853828250266413, 0.15987681116936048, 0.3571624032205339, 0.3446130066943262, 0.17156495605073196], [0.04094214191978089, 0.8074935315492264, 0.04072374745327859, 0.3040121497329492, 0.386175668893331], [0.8863036383846897, 0.16391864869844425, 0.08043082304806365, 0.5446067188916511, 0.3322447954506178], [0.18475402150623976, 0.024935478281101885, 0.4190753461480375, 0.2758626561490949, 0.27896932182164896], [1.0817468726920543, 0.07396301486295556, 0.1280034866729233, 0.3674966177209176, 0.24120139470658758], [0.6544962105465044, 0.2114156551428916, 0.5204788774478685, 0.3156973092685014, 0.09903385254567981], [0.5929406613622193, 0.45219299244403005, 0.5602180274046838, 0.37650049519061707, 0.13904406458983568], [0.49887086434840494, 0.3699419323732054, 0.564210673755271, 0.5545680234811955, 0.2950839363206603], [0.2552838434935282, 0.539061684327517, 0.3652823336717889, 0.5534794752989473, 0.0477677825491732], [0.5370329360327729, 0.6174470031728702, 0.015082488842309144, 0.14508068858782927, 0.25823368894907905], [0.6474516862837932, 0.5218005541404692, 0.06263757769735816, 0.3320946815748503, 0.1392097398502607], [0.880234694254004, 0.5847089180772038, 0.01589293825958745, 0.5125612431633159, 0.003372766423770701], [0.7793912122760464, 0.19308023772740499, 0.6755643785006188, 0.4896608913839428, 0.27490956865241006], [0.7221836612453024, 0.509606893640106, 0.2685939899110628, 0.07979756374542563, 0.10502664244161], [1.0619601479154213, 0.49383654599914256, 0.2522458965210656, 0.5400670129569305, 0.2066986080037862], [0.9207555112253296, 0.30715139027919286, 0.0770833279337319, 0.5470133022116678, 0.2859894855035783], [0.2588338148253955, 0.8517570752811182, 0.5644829990461941, 0.012098858768647571, 0.40866467968643794], [0.9496666172939388, 0.2299379403740925, 0.33674651247769827, 0.41882864468018377, 0.005040445612656957], [0.15752012443114125, 0.8752197468584778, 0.028811899551711855, 0.420801127258319, 0.05247041917678508], [0.3044512146686752, 0.8063213464904356, 0.23015063721917214, 0.22061833586979712, 0.2875014056153718], [0.7740196667691218, 0.10912340044861904, 0.2504646547394872, 0.3657024186383483, 0.40634580058383957], [1.046269343581638, 0.5623884823173309, 0.1287927855450368, 0.06971923266695762, 0.4518794203504759], [0.5647689648046883, 0.1321016871889526, 0.33127226686542327, 0.5165769136918977, 0.13105690947764723], [0.5806039702281127, 0.3184494621164777, 0.4802979045256514, 0.1827511503795154, 0.006688425011724293], [0.2982718323460206, 0.42419298754346335, 0.09115952505150861, 0.08460892871041197, 0.2604087082159233], [0.44501896628087834, 0.04394123552514248, 0.6640280522283261, 0.06565827276234606, 0.277454260320847], [0.3445538618604468, 0.0904656623192313, 0.35804279314889287, 0.49357358199678486, 0.3852684774038415], [0.20265329356867426, 0.8520997796910056, 0.2391130390614321, 0.1530271227358598, 0.07037408384396872], [0.09410034993831527, 0.634844993635292, 0.12021738888579886, 0.009013198896480256, 0.2039371389439958], [0.5486139068876267, 0.028971148129620476, 0.6087699733229627, 0.22287433564445822, 0.4679952234441419], [0.06752524214315982, 0.8770865766284608, 0.31988764452998225, 0.13350647941068472, 0.4239224418560817]], Any[], [0.02126254053438766, 0.012307775404590939, 0.01027370276412425, 0.00612648189439601, 0.009962303203392493, 0.01803048242993967, 0.014438354643408074, 0.01978346595334384, 0.013442676937879396, 0.01449003867659714, 0.011395225509992505, 0.011993575378876346, 0.01856750172458807, 0.013413411415283872, 0.004905111175349629, 0.01605658185541346, 0.014720671000999793, 0.009876285444368967, 0.022104627695502976, 0.014932351480907411, 0.011948285866308818, 0.0162602890144977, 0.006339159473454063, 0.016636430857095916, 0.011993575378876346, 0.015559900591637244, 0.017924983867516463, 0.013569264960037679, 0.01000450303977992, 0.02604663229684623, 0.019275531697432763, 0.017924983867516463, 0.01764103411543103, 0.008253293932134777, 0.01682205593128717, 0.013747929128241588, 0.011158573204760484, 0.019150755403549578, 0.01320073383622582, 0.011108704938240115, 0.01993460300079737, 0.006425177232477588, 0.021567608400854574, 0.020921645359918653, 0.018894056353227023, 0.015676523118504364, 0.015903480192383128, 0.017235186832636123, 0.013538187709167057, 0.01197936311717944, 0.015356930382312117, 0.009088296106250641, 0.017685629854574524, 0.01628339799146916, 0.01197936311717944, 0.0244680708006592, 0.015613629432634675, 0.013499429174307399, 0.023375140350797376, 0.009311326829634928, 0.019154712804445723, 0.012895481645863627, 0.0011790419903049683, 0.0162602890144977, 0.008363556782201128, 0.015516489088094344, 0.0077209115236928335, 0.022003491171061276, 0.009876285444368967, 0.015132556533668746, 0.007305523884700979, 0.01624633998242894, 0.008363556782201128, 0.01783935407696312, 0.012076503461719769, 0.021215812911561646, 0.0169798029087943, 0.016432607616778533, 0.006392973990102546, 0.00707425194182981, 0.019969733587693436, 0.019822726989448536, 0.006425177232477588, 0.013499429174307399, 0.010776452378609983, 0.009325932716690452, 0.02540201359182877, 0.020615880952524635, 0.012814365291295302, 0.013467225931932355, 0.010674271598614404, 0.01595273987820348, 0.019150755403549578, 0.014493356459024767, 0.009718419481109833, 0.021399728549772425, 0.016737859807140723, 0.0011790419903049683, 0.019593707826328365, 0.010611377912744715], [9.9e99], [1]), ApproximateBayesianComputing.abc_log_type(Array{Float64,1}[], Any[], Float64[], [9.9e99], [1]), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+# t= 1 eps= 0.017924983867516463 med(d)= 0.012249685362651712 attempts= 1.0 6 reps= 0 ess= 35.22505010648054
+Mean(theta)= [0.5803323792569033; 0.4025704850723549; 0.34138755352896044; 0.2389667561619959; 0.23637571075295175] Stand. Dev.(theta)= [0.39992467534218606; 0.22071978711814738; 0.19545259956714672; 0.16824716061982356; 0.14960047135319973]
+# t= 2 eps= 0.01613248548076482 med(d)= 0.011911248851853493 attempts= 1.0 5 reps= 0 ess= 22.544390874544167
+Mean(theta)= [0.674420454906024; 0.41674319037324453; 0.3033469777410748; 0.20119619357811766; 0.2623564607331881] Stand. Dev.(theta)= [0.36240234265367605; 0.23258054184794882; 0.20166761370497044; 0.1483021809545503; 0.1563831791432257]
+# t= 3 eps= 0.014519236932688338 med(d)= 0.009691013673210375 attempts= 1.0 6 reps= 0 ess= 32.98188185933396
+Mean(theta)= [0.7698650125689891; 0.4553211777895628; 0.27942872820458137; 0.16034557660394158; 0.22089129497017673] Stand. Dev.(theta)= [0.33928297777602234; 0.26516016347912247; 0.16886196701043127; 0.11522787866778969; 0.12590060891493204]
+# t= 4 eps= 0.013067313239419504 med(d)= 0.009891824069804277 attempts= 1.0 8 reps= 0 ess= 32.00785858879555
+Mean(theta)= [0.705448919240347; 0.5453467795720414; 0.2778020474046294; 0.19109098928901774; 0.2047653923112896] Stand. Dev.(theta)= [0.2572476136634303; 0.30598818760111485; 0.17088463241498408; 0.12452672848240409; 0.10508402957506596]
+# t= 5 eps= 0.011760581915477554 med(d)= 0.009014533155958692 attempts= 2.0 12 reps= 0 ess= 18.93326539827669
+Mean(theta)= [0.7619192685247125; 0.45464408389415156; 0.2552412908139965; 0.16511343951752072; 0.19056726812627695] Stand. Dev.(theta)= [0.2532270110633172; 0.25221803194084785; 0.20688342124354722; 0.12592099417407374; 0.11880044825496465]
+# t= 6 eps= 0.010584523723929798 med(d)= 0.0067365767932093465 attempts= 2.0 12 reps= 0 ess= 39.79038219083473
+Mean(theta)= [0.8933660418664968; 0.44584440607502884; 0.3375023422767364; 0.10949583327129371; 0.19580590540405776] Stand. Dev.(theta)= [0.2651657351219944; 0.2531373358984185; 0.18677594421691582; 0.09154282331167025; 0.1092208126863478]
+# t= 7 eps= 0.00952607135153682 med(d)= 0.00707425194182981 attempts= 2.0 11 reps= 0 ess= 2.2374911180698906
+Mean(theta)= [0.8482745586117638; 0.39487804968307083; 0.25813765792047205; 0.10063206399661648; 0.19242439366154898] Stand. Dev.(theta)= [0.28716839103665465; 0.21663793511158588; 0.15522044055307435; 0.0851234178308296; 0.09708947446125414]
+# t= 8 eps= 0.008573464216383138 med(d)= 0.00707425194182981 attempts= 2.0 13 reps= 0 ess= 9.666582766847075
+Mean(theta)= [0.4940476804631805; 0.5888884913269028; 0.3920518389534568; 0.013468858985402352; 0.09677586281768567] Stand. Dev.(theta)= [0.37948018471755396; 0.24896553625850004; 0.2354146298723154; 0.028053587476095827; 0.09732610503252877]
+# t= 9 eps= 0.007716117794744824 med(d)= 0.005774200858720024 attempts= 3.0 13 reps= 0 ess= 19.34512374579964
+Mean(theta)= [0.5481130634735683; 0.5706946693367081; 0.3869017913839713; 0.045075827193641727; 0.16756409196877373] Stand. Dev.(theta)= [0.36142729833052556; 0.17239541425462324; 0.1685198163122347; 0.02865745063460559; 0.09225952822505189]
+# t= 10 eps= 0.006944506015270342 med(d)= 0.004809793197023206 attempts= 3.0 15 reps= 0 ess= 4.993689271972134
+Mean(theta)= [0.4510359349219516; 0.5008121052225725; 0.3236297192887604; 0.04842670759768643; 0.1630217755382476] Stand. Dev.(theta)= [0.3759122498754802; 0.19485274479704903; 0.19999460218143897; 0.03764089918195669; 0.08674154952785527]
+# t= 11 eps= 0.006250055413743308 med(d)= 0.003810723616922789 attempts= 4.0 30 reps= 0 ess= 27.874368877450834
+Mean(theta)= [0.6490643055084192; 0.6417626156688722; 0.13199985326115063; 0.07119425813295098; 0.180211600182623] Stand. Dev.(theta)= [0.3241735852513385; 0.23888502857687408; 0.13412018069268725; 0.05090533210458239; 0.09991541027302707]
+# t= 12 eps= 0.005625049872368977 med(d)= 0.0031994508222944417 attempts= 4.0 28 reps= 0 ess= 3.5798652079455704
+Mean(theta)= [0.7957536031264465; 0.5929240578014658; 0.16006347264598791; 0.07086547815640311; 0.139953358067368] Stand. Dev.(theta)= [0.34650005868198563; 0.23280338538466389; 0.13288413520516873; 0.054741119643822084; 0.06925601618206262]
+# t= 13 eps= 0.00500225151988996 med(d)= 0.003537125970914905 attempts= 11.0 49 reps= 0 ess= 9.486039234616197
+Mean(theta)= [0.7749333733325366; 0.5585290790384527; 0.24497780672801964; 0.10512067228093182; 0.09963347889969586] Stand. Dev.(theta)= [0.28037644442380577; 0.21417740456864798; 0.15210627126999957; 0.0676713947894202; 0.0580600736576797]
+# t= 14 eps= 0.004502026367900964 med(d)= 0.002888051261562683 attempts= 5.0 53 reps= 0 ess= 3.653893180084221
+Mean(theta)= [0.7632538064989173; 0.38061862638974975; 0.24734106885339605; 0.07611726255918745; 0.13366487093061463] Stand. Dev.(theta)= [0.3203334580203709; 0.2394311005535151; 0.16927484834940545; 0.06379085352765643; 0.05005832878050217]
+# t= 15 eps= 0.0040518237311108676 med(d)= 0.002237074887805119 attempts= 12.0 77 reps= 0 ess= 10.286792653743403
+Mean(theta)= [0.8857754737908832; 0.44307474897544746; 0.10241805781975863; 0.12027870748473209; 0.15809125490628248] Stand. Dev.(theta)= [0.29312959978735464; 0.243060580098979; 0.11696426664587939; 0.09404944139195885; 0.06988202591163599]
+Epsilon history = Any[0.017924983867516463, 0.01613248548076482, 0.014519236932688338, 0.013067313239419504, 0.011760581915477554, 0.010584523723929798, 0.00952607135153682, 0.008573464216383138, 0.007716117794744824, 0.006944506015270342, 0.006250055413743308, 0.005625049872368977, 0.00500225151988996, 0.004502026367900964, 0.0040518237311108676]
+Mean history = Any[0.5803323792569033, 0.674420454906024, 0.7698650125689891, 0.705448919240347, 0.7619192685247125, 0.8933660418664968, 0.8482745586117638, 0.4940476804631805, 0.5481130634735683, 0.4510359349219516, 0.6490643055084192, 0.7957536031264465, 0.7749333733325366, 0.7632538064989173, 0.8857754737908832]
+Std Dev. history = Any[0.39992467534218606, 0.36240234265367605, 0.33928297777602234, 0.2572476136634303, 0.2532270110633172, 0.2651657351219944, 0.28716839103665465, 0.37948018471755396, 0.36142729833052556, 0.3759122498754802, 0.3241735852513385, 0.34650005868198563, 0.28037644442380577, 0.3203334580203709, 0.29312959978735464]
+1358.602579 seconds (4.95 G allocations: 175.133 GiB, 5.85% gc time)
+
+Running simulation (part 2)...
+  0.000004 seconds (1 allocation: 16 bytes)
+# run_abc: SimParam(Dict{String,Any}("calc_target_obs_single_obs" => ExoplanetsSysSim.calc_target_obs_single_obs,"p_lim_full" => [0.5, 1.0, 2.0, 4.0, 8.0, 16.0, 32.0, 64.0, 128.0, 256.0, 500.0],"generate_planetary_system" => ExoplanetsSysSim.generate_planetary_system_uncorrelated_incl,"stellar_catalog" => "q1q17_dr25_gaia_fgk.jld2","num_kepler_targets" => 79928,"sigma_hk" => 0.03,"koi_catalog" => "q1_q17_dr25_koi.csv","minimum ABC dist skip pass 2" => 0.003537125970914905,"bin_size_factor" => 2.0,"Pkg.installed" => NamedTuple{(:name, :version),Tuple{String,VersionNumber}}[(name = "JLD2", version = v"0.1.13"), (name = "Distributions", version = v"0.23.4"), (name = "Feather", version = v"0.5.6"), (name = "CORBITS", version = v"1.0.1"), (name = "CSV", version = v"0.6.2"), (name = "FileIO", version = v"1.3.0"), (name = "SpecialFunctions", version = v"0.10.3"), (name = "ExoplanetsSysSim", version = v"1.0.1"), (name = "Example", version = v"0.5.3"), (name = "DataFrames", version = v"0.21.2"), (name = "StatsBase", version = v"0.33.0"), (name = "JLD", version = v"0.9.2"), (name = "IJulia", version = v"1.21.2"), (name = "StatsFuns", version = v"0.9.5"), (name = "ApproximateBayesianComputing", version = v"0.0.3"), (name = "Revise", version = v"2.7.3")],"num_targets_sim_pass_one" => 10000,"osd_file" => "inputs/dr25fgk_relaxcut_osds.jld2","version_julia" => "1.4.2","p_lim_arr" => [237.0, 500.0],"star_table_setup" => Main.EvalSysSimModel.setup_star_table_dr25,"generate_kepler_target" => ExoplanetsSysSim.generate_kepler_target_from_table,"generate_period_and_sizes" => Main.EvalSysSimModel.generate_period_and_sizes_binrates_uniform,"read_OSD_function" => true,"vetting_efficiency" => ExoplanetsSysSim.vetting_efficiency_none,"r_lim_arr" => [0.00458420780266222, 0.00687631170399333, 0.00916841560532444, 0.011460519506655551, 0.01375262340798666, 0.01604472730931777],"obs_par" => [0.8558163822938629; 0.8189848404385129; 0.5225474098432259; 0.12926821569842964; 0.27507115197145254],"generate_num_planets" => Main.EvalSysSimModel.generate_num_planets_binrates_uniform,"read_stellar_catalog" => true,"calc_target_obs_sky_ave" => ExoplanetsSysSim.calc_target_obs_sky_ave,"max_tranets_in_sys" => 7,"read_window_function" => true,"sigma_incl" => 2.0,"transit_noise_model" => ExoplanetsSysSim.transit_noise_model_diagonal,"generate_star" => ExoplanetsSysSim.generate_star_dumb,"generate_planet_mass_from_radius" => ExoplanetsSysSim.generate_planet_mass_from_radius_powerlaw,"mr_power_index" => 2.0,"mr_const" => 1.0,"r_lim_full" => [0.00229210390133111, 0.00458420780266222, 0.00687631170399333, 0.00916841560532444, 0.011460519506655551, 0.01375262340798666, 0.01604472730931777, 0.01833683121064888, 0.022921039013311103, 0.02750524681597332, 0.03667366242129776, 0.05501049363194664, 0.07334732484259553, 0.11002098726389328, 0.14669464968519105],"generate_e_omega" => ExoplanetsSysSim.generate_e_omega_rayleigh), Dict{String,Bool}("calc_target_obs_single_obs" => 0,"p_lim_full" => 0,"generate_planetary_system" => 0,"stellar_catalog" => 0,"num_kepler_targets" => 0,"sigma_hk" => 0,"koi_catalog" => 0,"minimum ABC dist skip pass 2" => 0,"bin_size_factor" => 0,"Pkg.installed" => 0,"num_targets_sim_pass_one" => 0,"osd_file" => 0,"version_julia" => 0,"p_lim_arr" => 0,"star_table_setup" => 0,"generate_kepler_target" => 0,"generate_period_and_sizes" => 0,"read_OSD_function" => 0,"vetting_efficiency" => 0,"r_lim_arr" => 0,"obs_par" => 1,"generate_num_planets" => 0,"read_stellar_catalog" => 0,"calc_target_obs_sky_ave" => 0,"max_tranets_in_sys" => 0,"read_window_function" => 0,"sigma_incl" => 0,"transit_noise_model" => 0,"generate_star" => 0,"generate_planet_mass_from_radius" => 0,"mr_power_index" => 0,"mr_const" => 0,"r_lim_full" => 0,"generate_e_omega" => 0))
+# t= 1 eps= 0.0031994508222944417 med(d)= 0.0013369079535641031 attempts= 18.0 99 reps= 0 ess= 33.19846114489051
+Mean(theta)= [0.972242156346685; 0.544675966912965; 0.13501593766958928; 0.08039308764015837; 0.16378115813345023] Stand. Dev.(theta)= [0.2777332633843883; 0.2717208500536748; 0.1295398884833539; 0.07011717892362185; 0.063064834973477]
+# t= 2 eps= 0.0028795057400649977 med(d)= 0.0013369079535641031 attempts= 10.0 59 reps= 0 ess= 20.140329826030403
+Mean(theta)= [0.8178583491474324; 0.4744992387337342; 0.16868730886866798; 0.042590402356774915; 0.1427348603049639] Stand. Dev.(theta)= [0.269310235069187; 0.2756671056889607; 0.1019489292006773; 0.0465868568127167; 0.05358423923932186]
+# t= 3 eps= 0.002237074887805119 med(d)= 0.0011790419903049683 attempts= 10.0 96 reps= 0 ess= 5.209423235669247
+Mean(theta)= [0.7614239693394856; 0.4118132243849663; 0.14703976547390432; 0.030451917768022228; 0.13810769517365348] Stand. Dev.(theta)= [0.3724906726251021; 0.1685896614973583; 0.11429547818635799; 0.03473017440952343; 0.05138362935720604]
+# t= 4 eps= 0.0013369079535641031 med(d)= 0.0 attempts= 14.0 79 reps= 0 ess= 7.222964090658308
+Mean(theta)= [0.46173174853698923; 0.4948594080204765; 0.1021444471278981; 0.03417383950363015; 0.15916142141883988] Stand. Dev.(theta)= [0.4949524512180442; 0.20229619466724116; 0.09225503996385781; 0.02191537341272695; 0.0715231923183296]
+# t= 5 eps= 0.0011790419903049683 med(d)= 0.0 attempts= 26.5 122 reps= 0 ess= 38.332013359467766
+Mean(theta)= [0.6958598257792024; 0.33914276087706746; 0.16101484238991723; 0.019427766473289542; 0.1360976092398932] Stand. Dev.(theta)= [0.4548883618288073; 0.20949940081837812; 0.11091199847176055; 0.017426889572680074; 0.05363029524312823]
+# Reached 0.0011790419903049683 after 5 generations.
+Epsilon history = Any[0.0031994508222944417, 0.0028795057400649977, 0.002237074887805119, 0.0013369079535641031, 0.0011790419903049683]
+Mean history = Any[0.972242156346685, 0.8178583491474324, 0.7614239693394856, 0.46173174853698923, 0.6958598257792024]
+Std Dev. history = Any[0.2777332633843883, 0.269310235069187, 0.3724906726251021, 0.4949524512180442, 0.4548883618288073]
+12474.532418 seconds (62.78 G allocations: 2.178 TiB, 15.60% gc time)
+
+Expanding to large generation...
+# run_abc_largegen: SimParam(Dict{String,Any}("calc_target_obs_single_obs" => ExoplanetsSysSim.calc_target_obs_single_obs,"p_lim_full" => [0.5, 1.0, 2.0, 4.0, 8.0, 16.0, 32.0, 64.0, 128.0, 256.0, 500.0],"generate_planetary_system" => ExoplanetsSysSim.generate_planetary_system_uncorrelated_incl,"stellar_catalog" => "q1q17_dr25_gaia_fgk.jld2","num_kepler_targets" => 79928,"sigma_hk" => 0.03,"koi_catalog" => "q1_q17_dr25_koi.csv","minimum ABC dist skip pass 2" => 0.003537125970914905,"bin_size_factor" => 2.0,"Pkg.installed" => NamedTuple{(:name, :version),Tuple{String,VersionNumber}}[(name = "JLD2", version = v"0.1.13"), (name = "Distributions", version = v"0.23.4"), (name = "Feather", version = v"0.5.6"), (name = "CORBITS", version = v"1.0.1"), (name = "CSV", version = v"0.6.2"), (name = "FileIO", version = v"1.3.0"), (name = "SpecialFunctions", version = v"0.10.3"), (name = "ExoplanetsSysSim", version = v"1.0.1"), (name = "Example", version = v"0.5.3"), (name = "DataFrames", version = v"0.21.2"), (name = "StatsBase", version = v"0.33.0"), (name = "JLD", version = v"0.9.2"), (name = "IJulia", version = v"1.21.2"), (name = "StatsFuns", version = v"0.9.5"), (name = "ApproximateBayesianComputing", version = v"0.0.3"), (name = "Revise", version = v"2.7.3")],"num_targets_sim_pass_one" => 10000,"osd_file" => "inputs/dr25fgk_relaxcut_osds.jld2","version_julia" => "1.4.2","p_lim_arr" => [237.0, 500.0],"star_table_setup" => Main.EvalSysSimModel.setup_star_table_dr25,"generate_kepler_target" => ExoplanetsSysSim.generate_kepler_target_from_table,"generate_period_and_sizes" => Main.EvalSysSimModel.generate_period_and_sizes_binrates_uniform,"read_OSD_function" => true,"vetting_efficiency" => ExoplanetsSysSim.vetting_efficiency_none,"r_lim_arr" => [0.00458420780266222, 0.00687631170399333, 0.00916841560532444, 0.011460519506655551, 0.01375262340798666, 0.01604472730931777],"obs_par" => [0.10110571948467058; 0.3563266230506; 0.05952271228995083; 0.03829857371195348; 0.16793546433772574],"generate_num_planets" => Main.EvalSysSimModel.generate_num_planets_binrates_uniform,"read_stellar_catalog" => true,"calc_target_obs_sky_ave" => ExoplanetsSysSim.calc_target_obs_sky_ave,"max_tranets_in_sys" => 7,"read_window_function" => true,"sigma_incl" => 2.0,"transit_noise_model" => ExoplanetsSysSim.transit_noise_model_diagonal,"generate_star" => ExoplanetsSysSim.generate_star_dumb,"generate_planet_mass_from_radius" => ExoplanetsSysSim.generate_planet_mass_from_radius_powerlaw,"mr_power_index" => 2.0,"mr_const" => 1.0,"r_lim_full" => [0.00229210390133111, 0.00458420780266222, 0.00687631170399333, 0.00916841560532444, 0.011460519506655551, 0.01375262340798666, 0.01604472730931777, 0.01833683121064888, 0.022921039013311103, 0.02750524681597332, 0.03667366242129776, 0.05501049363194664, 0.07334732484259553, 0.11002098726389328, 0.14669464968519105],"generate_e_omega" => ExoplanetsSysSim.generate_e_omega_rayleigh), Dict{String,Bool}("calc_target_obs_single_obs" => 0,"p_lim_full" => 0,"generate_planetary_system" => 0,"stellar_catalog" => 0,"num_kepler_targets" => 0,"sigma_hk" => 0,"koi_catalog" => 0,"minimum ABC dist skip pass 2" => 0,"bin_size_factor" => 0,"Pkg.installed" => 0,"num_targets_sim_pass_one" => 0,"osd_file" => 0,"version_julia" => 0,"p_lim_arr" => 0,"star_table_setup" => 0,"generate_kepler_target" => 0,"generate_period_and_sizes" => 0,"read_OSD_function" => 0,"vetting_efficiency" => 0,"r_lim_arr" => 0,"obs_par" => 1,"generate_num_planets" => 0,"read_stellar_catalog" => 0,"calc_target_obs_sky_ave" => 0,"max_tranets_in_sys" => 0,"read_window_function" => 0,"sigma_incl" => 0,"transit_noise_model" => 0,"generate_star" => 0,"generate_planet_mass_from_radius" => 0,"mr_power_index" => 0,"mr_const" => 0,"r_lim_full" => 0,"generate_e_omega" => 0))
+2582.757619 seconds (14.32 G allocations: 513.947 GiB, 16.90% gc time)
+
+-----------------------------
+Orbital Period (day) = [237.0, 500.0] / Planet Radius (R_earth) = [0.5, 0.75]
+
+Rate = 0.6310180887406199 + 0.36095932424891564 - 0.3783148042110505
+Density = 2.0846378077821623 + 1.1924689130585175 - 1.2498046540568137
+-----------------------------
+Orbital Period (day) = [237.0, 500.0] / Planet Radius (R_earth) = [0.75, 1.0]
+
+Rate = 0.37405923882178843 + 0.3410021724537811 - 0.26632849347770626
+Density = 1.7416860588443503 + 1.5877665036936726 - 1.2400726302716314
+-----------------------------
+Orbital Period (day) = [237.0, 500.0] / Planet Radius (R_earth) = [1.0, 1.25]
+
+Rate = 0.15682959763369755 + 0.24199663794853984 - 0.11769441052993604
+Density = 0.9414255400876442 + 1.452671045628869 - 0.7065026351545938
+-----------------------------
+Orbital Period (day) = [237.0, 500.0] / Planet Radius (R_earth) = [1.25, 1.5]
+
+Rate = 0.039104605985442555 + 0.0328664888843233 - 0.023119274461508268
+Density = 0.28729772192283065 + 0.24146688468318184 - 0.1698550520563398
+-----------------------------
+Orbital Period (day) = [237.0, 500.0] / Planet Radius (R_earth) = [1.5, 1.75]
+
+Rate = 0.1601790155317765 + 0.0666776891272263 - 0.06381962352893977
+Density = 1.391882146687506 + 0.5793985233986825 - 0.5545632447755123
+-----------------------------
+
+CatalogSummaryStatistics(Dict{String,Any}("num_sys_tranets" => [1426.0, 291.0, 108.0, 36.0, 10.0, 3.0, 0.0],"weight_list" => [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],"planets detected" => 2544,"num targets" => 79928,"planets table" => [0.0, 0.0, 0.0, 0.0, 4.0]), Dict{String,Any}("bin_match_list" => [[], [], [], [], [171, 328, 1300, 2261]]))
+
+julia> 
